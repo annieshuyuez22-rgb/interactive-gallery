@@ -196,7 +196,7 @@ A curated collection of **25 physics, 3D and interactive projects**, with **{vid
 No framework, package install or build step is needed for the gallery:
 
 ```bash
-git clone <your-fork-or-repo-url>
+git clone https://github.com/annieshuyuez22-rgb/social-bench.git
 cd social-bench
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
