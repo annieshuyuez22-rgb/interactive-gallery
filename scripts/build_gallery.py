@@ -45,7 +45,7 @@ def card(case):
     tech = ''.join(f'<span class="tech-tag">{esc(item)}</span>' for item in case['tech'])
     search = ' '.join([case['title'], case['zh'], case['summary'], case['category_label'], *case['tech']]).lower()
     return f'''<article class="project-card" data-category="{case['category']}" data-search="{esc(search)}">
-  <a class="project-poster" href="{directory}/index.html"><img src="{directory}/poster.jpg" alt="{esc(case['title'])} poster" loading="lazy"><span class="card-number">SB—{case['number']:02d}</span></a>
+  <a class="project-poster" href="{directory}/index.html"><img src="{directory}/poster.jpg" alt="{esc(case['title'])} poster" loading="lazy"><span class="card-number">CC—{case['number']:02d}</span></a>
   <div class="card-body">
     <p class="card-category {case['category']}">{esc(case['category_label'])}</p>
     <div class="card-title-row"><h3><a href="{directory}/index.html">{esc(case['title'])}</a></h3><span class="card-zh">{esc(case['zh'])}</span></div>
@@ -61,7 +61,7 @@ def card(case):
 
 def build_root():
     featured = [case for case in CASES if case['featured']]
-    tiles = ''.join(f'<a class="hero-tile" href="{case_path(case)}/index.html"><img src="{case_path(case)}/poster.jpg" alt="{esc(case["title"])}"><span>SB—{case["number"]:02d}</span></a>' for case in featured)
+    tiles = ''.join(f'<a class="hero-tile" href="{case_path(case)}/index.html"><img src="{case_path(case)}/poster.jpg" alt="{esc(case["title"])}"><span>CC—{case["number"]:02d}</span></a>' for case in featured)
     counts = {category: sum(case['category'] == category for case in CASES) for category in ('physics', 'worlds', 'interactive')}
     video_count = sum(len(case['videos']) for case in CASES)
     source_count = sum(case['source_available'] for case in CASES)
@@ -129,7 +129,7 @@ def build_case(case):
 <meta name="description" content="{esc(case['summary'])}"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css">
 </head><body>{header('../../')}
 <main class="container">
-  <section class="case-hero"><a class="breadcrumb" href="../../index.html#archive">← Back to all projects</a><p class="eyebrow">SB—{case['number']:02d} · {esc(case['category_label'])}</p><h1>{esc(case['title'])}</h1><p class="case-zh">{esc(case['zh'])}</p><p class="case-summary">{esc(case['summary'])}</p><div class="case-actions">{apps}{source_button}<a class="button" href="process.html">Improvement log →</a><a class="button" href="{esc(case['reference'])}" target="_blank" rel="noreferrer">Public reference ↗</a></div></section>
+  <section class="case-hero"><a class="breadcrumb" href="../../index.html#archive">← Back to all projects</a><p class="eyebrow">CC—{case['number']:02d} · {esc(case['category_label'])}</p><h1>{esc(case['title'])}</h1><p class="case-zh">{esc(case['zh'])}</p><p class="case-summary">{esc(case['summary'])}</p><div class="case-actions">{apps}{source_button}<a class="button" href="process.html">Improvement log →</a><a class="button" href="{esc(case['reference'])}" target="_blank" rel="noreferrer">Public reference ↗</a></div></section>
   <div class="case-layout"><div class="video-stack">{videos}</div><aside class="case-sidebar">
     <section class="info-card"><h2>Project materials</h2><ul class="info-list"><li><strong>{len(case['videos'])}</strong> final presentation{'s' if len(case['videos']) != 1 else ''}</li><li>{'Verified source material' if case['source_available'] else 'Demo-only archive'}</li><li>{prompt_text}</li></ul></section>
     <section class="info-card"><h2>Source notes</h2><p>{esc(source_text)}</p>{source_button}</section>
@@ -150,7 +150,7 @@ def build_source_page(case, target):
     rows = ''.join(f'<li><a href="source/{path.relative_to(source_root).as_posix()}">{path.relative_to(source_root).as_posix()}</a><small>{path.stat().st_size / 1024:.0f} KB</small></li>' for path in files)
     apps = ''.join(f'<a class="button button-primary" href="{esc(app["path"])}">{esc(app["label"])} ↗</a>' for app in case['apps'])
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Source · {esc(case['title'])} · Social Bench</title><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css"></head><body>{header('../../')}
-<main class="container"><section class="case-hero"><a class="breadcrumb" href="index.html">← Back to {esc(case['title'])}</a><p class="eyebrow">SB—{case['number']:02d} · Source archive</p><h1>Source files</h1><p class="case-summary">{esc(case['source_scope'])}</p><div class="case-actions">{apps}<a class="button" href="index.html">Watch the final cut</a></div></section>
+<main class="container"><section class="case-hero"><a class="breadcrumb" href="index.html">← Back to {esc(case['title'])}</a><p class="eyebrow">CC—{case['number']:02d} · Source archive</p><h1>Source files</h1><p class="case-summary">{esc(case['source_scope'])}</p><div class="case-actions">{apps}<a class="button" href="index.html">Watch the final cut</a></div></section>
 <section class="section"><div class="section-heading"><div><p class="section-kicker">{len(files)} files</p><h2>Package contents</h2></div><p>Files open directly when the browser supports their format. Buildable projects retain their original manifests.</p></div><div class="info-card"><ul class="source-list">{rows}</ul></div></section>
 </main>{footer('../../')}</body></html>'''
     (target / 'source.html').write_text('\n'.join(line.rstrip() for line in page.splitlines()) + '\n')
