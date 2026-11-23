@@ -4,7 +4,7 @@
 
 A curated collection of **25 physics, 3D and interactive projects**, with **33 final presentation cuts**, verified source material for **8 projects**, and original prompt archives for **15 projects**.
 
-[**Open the interactive gallery →**](https://annieshuyuez22-rgb.github.io/social-bench/)
+[**Open the interactive gallery →**](https://annieshuyuez22-rgb.github.io/interactive-gallery/)
 
 ## Improvement archive
 
@@ -56,8 +56,8 @@ A curated collection of **25 physics, 3D and interactive projects**, with **33 f
 No framework, package install or build step is needed for the gallery:
 
 ```bash
-git clone https://github.com/annieshuyuez22-rgb/social-bench.git
-cd social-bench
+git clone https://github.com/annieshuyuez22-rgb/interactive-gallery.git
+cd interactive-gallery
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
