@@ -1,0 +1,74 @@
+# Fjord Seaplane · Prompt archive
+
+## Basic prompt
+
+```text
+【复刻 · 3D场景】复刻 X @EnvolDev 四模型横测原型（水上飞机飞越峡湾）
+
+Build a complete, spectacular 3D cinematic scene that runs in the browser as a single self-contained HTML file. Use Three.js from a CDN for rendering; everything else must be inline — no external art assets, no downloaded textures or models. All geometry and textures must be procedurally generated in code.
+
+SCENE — "Fjord Seaplane" (a Nordic fjord / mountain lake in bright daylight):
+- A wide turquoise mountain lake with animated water: rippling waves, sun glints, and reflections of the mountains on the surface.
+- Steep rocky mountains rising on both sides of the water, with snow-capped jagged peaks in the distance. Layered ridges fading into atmospheric haze.
+- At least two tall waterfalls cascading down the cliffs into the lake, with white falling water and foam/mist at the base.
+- Dense pine forests (instanced conifers) covering the lower slopes and shorelines.
+- A small lakeside village: a handful of wooden cabins with warm windows near a dock on the shore.
+- The hero: a red-and-white SEAPLANE (high-wing monoplane with two floats/pontoons, radial engine, spinning propeller).
+
+AUTOPILOT CINEMATIC — exactly this shared timeline, driven by one master clock `t` in seconds (used for synced recording across models):
+- t = 0.0–3.0: the seaplane floats on the water near the village dock, gently bobbing; propeller spins up.
+- t = 3.0–8.0: it taxis and accelerates across the lake, trailing a foamy wake and spray.
+- t = 8.0–9.5: liftoff — nose pitches up, the plane leaves the water.
+- t = 9.5–15.0: low pass over the water toward the biggest waterfall; camera tracks alongside/behind the plane.
+- t = 15.0–19.0: a gentle banked turn over the fjord with the village below.
+- t = 19.0–22.0: climb out toward the snowy peaks, then seamlessly loop back to t = 0.
+
+CAMERA: cinematic chase camera — smooth, medium-to-wide shots (no extreme close-ups), always keeping the plane and the landscape in frame. Director-style framing wins over face-hugging.
+
+TECH REQUIREMENTS:
+- Single HTML file, Three.js via CDN (importmap or UMD both fine).
+- URL param `?auto=1` must start the autopilot cinematic immediately on load (no click needed).
+- Bright, saturated, beautiful colors; soft shadows; atmospheric haze. Target a stable 60fps on a laptop GPU.
+- The page fills the whole window; assume an ultrawide ~2.17:1 viewport (e.g. 1776×820).
+- No external images/fonts/models; procedural everything.
+- Output ONLY the complete HTML file in one code block.
+```
+
+## Advanced prompt
+
+```text
+# K3 Advanced Prompt — fjord-seaplane（峡湾水上飞机 · 逐帧复刻 X 爆款横测原型）
+
+Build a **breathtaking, recording-grade 3D cinematic scene** in a single self-contained HTML file. Three.js may load from a CDN; every other asset — geometry, textures, sprites, UI — must be **procedurally generated in code**. No external images, fonts, or model files.
+
+Reference: the viral X post @EnvolDev (2026-10-16, 165K views) — four AI models each built "a seaplane flying over a Nordic fjord with waterfalls". We recreate that scene at the highest fidelity and the most cinematic camera work, at **golden-hour dusk** (the most striking of the four reference interpretations).
+
+## 1. Landscape (the fjord)
+- A long, wide **turquoise fjord** winding between steep mountain walls; layered procedural ridges (simplex-style noise) with **snow-capped jagged peaks** in the distance, fading into warm atmospheric haze.
+- **Golden-hour sky**: low warm sun, gradient sky (amber → rose → deep blue), a visible sun disc with glow, scattered lit clouds.
+- **Animated water**: rippled normal perturbation, sun glitter path on the surface, **planar reflections of mountains/sky** (or convincing fake), shore foam lines, and a glassy dusk tint.
+- **Two+ waterfalls** plunging down the cliffs: scrolling white water sheets, **foam bursts and drifting mist** at the base.
+- **Dense pine forests**: thousands of instanced conifers (2–3 variants, color jitter) carpeting the lower slopes and shoreline.
+- **Lakeside village**: 8–12 wooden cabins with warm glowing windows, a small church with a steeple, wooden docks with moored rowboats, thin chimney smoke.
+- Floating mist banks low over the water in the distance; birds (tiny flocks) crossing the sky.
+
+## 2. The seaplane (hero asset — build it with love)
+- High-wing monoplane, **red & white livery** with stripes; two aluminum floats with struts; radial engine cowling; **spinning propeller with motion-blur disc**; navigation lights; visible cockpit glass; a pilot silhouette.
+- Believable flight physics feel: bobbing on waves, water spray at the floats while taxiing, pitch-up rotation at liftoff, **banked turns with coordinated roll**, subtle turbulence wobble in cruise, wake foam trail that fades.
+
+## 3. Autopilot cinematic — shared timeline (master clock `t`, seconds; MUST match for synced recording)
+- t = 0.0–3.0: plane floats near the village dock, bobbing; propeller spins up; warm windows glow; camera holds a **postcard-wide establishing shot** (first frame = poster).
+- t = 3.0–8.0: taxi & acceleration across the glassy water, spray wake building; camera low and tracking from the side.
+- t = 8.0–9.5: **liftoff** — nose up, floats leave the water, droplets shed.
+- t = 9.5–15.0: **low pass** over the water toward the big waterfall; camera chases from behind-quarter; waterfall mist drifts; sun glitter path leads the eye.
+- t = 15.0–19.0: gentle **banked turn** over the fjord, village and docks below; camera wide, mountains layered behind.
+- t = 19.0–22.0: **climb out** toward the glowing snowy peaks; settle into the postcard composition; **seamless loop** back to t = 0.
+- Director rule: medium-to-wide shots only, continuous smooth motion (no hard cuts, no speed jumps at beats — crossfade the camera rig parameters).
+
+## 4. Tech requirements
+- Single HTML file; Three.js via CDN. URL param `?auto=1` starts the cinematic immediately (no click). Also support `?t0=N` to start at second N, and `?freeze=N` to render exactly one frame at t=N (for QC frame diffing).
+- Bright, saturated, high-contrast golden-hour grade; soft shadows (PCF), fog/haze, tone-mapped HDR feel (ACES). **Stable 60fps** on a laptop GPU; use instancing for trees/rocks, cap shadow map size, no per-frame allocations.
+- Fill the whole window; assume an ultrawide ~2.17:1 viewport (1776×820). Zero console errors.
+- Iterate at least **5 rounds of self-refinement**: render, screenshot, compare against the reference frames, fix composition/color/framing, repeat.
+- Output ONLY the complete HTML file in one code block.
+```

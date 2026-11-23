@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Bottled Sea · Kimi K3.1 Pro / GPT6-Astra</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050a0f;color:#e9e7df;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body:before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 40% 40%,#152731 0,#09131b 52%,#05090e 100%)}#stage{position:absolute;left:50%;top:50%;width:3840px;height:2160px;transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center}.eyebrow{position:absolute;left:96px;top:72px;font-size:22px;letter-spacing:8px;color:#a28f68}.eyebrow:before{content:"";display:inline-block;width:54px;height:2px;background:#a28f68;vertical-align:middle;margin-right:24px}h1{position:absolute;left:96px;top:116px;margin:0;font:500 100px Georgia,"Times New Roman",serif;letter-spacing:-3px;color:#f0eee6}.subtitle{position:absolute;left:100px;top:248px;font-size:22px;letter-spacing:5px;color:#718892}.edition{position:absolute;right:96px;top:82px;text-align:right;font-size:20px;letter-spacing:5px;color:#728791;line-height:1.8}.model-head{position:absolute;top:444px;display:flex;align-items:baseline;gap:25px}.model-head .number{font:italic 32px Georgia,serif;color:#817457}.model-head h2{margin:0;font-size:52px;font-weight:500;letter-spacing:-1px}.model-head .status{font-size:18px;letter-spacing:4px;color:#6e8791;margin-left:10px}.left-head{left:96px}.right-head{left:1952px}.right-head h2{color:#a5b1b5}.slot{position:absolute;top:584px;width:1792px;height:1008px;border:2px solid rgba(184,171,139,.25);border-radius:14px;overflow:hidden;background:#0b151c;box-shadow:0 30px 100px rgba(0,0,0,.3)}.slot-left{left:96px}.slot-right{left:1952px}.slot video{display:block;width:100%;height:100%;object-fit:cover}.background .slot video{display:none}.placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#627983}.placeholder .plus{width:82px;height:82px;border:1px solid #405761;border-radius:50%;position:relative;margin-bottom:44px}.placeholder .plus:before,.placeholder .plus:after{content:"";position:absolute;left:50%;top:50%;background:#536d78;transform:translate(-50%,-50%)}.placeholder .plus:before{width:26px;height:1px}.placeholder .plus:after{width:1px;height:26px}.placeholder strong{font-size:34px;font-weight:400;letter-spacing:6px;color:#80949b}.placeholder span{margin-top:22px;font-size:22px;letter-spacing:5px}.placeholder small{margin-top:44px;font-size:18px;letter-spacing:3px;color:#445e69}.meta{position:absolute;top:1652px;font-size:20px;letter-spacing:4px;color:#617983}.meta-left{left:100px}.meta-right{left:1952px;color:#4d6671}.footer{position:absolute;left:96px;right:96px;bottom:74px;border-top:1px solid rgba(153,170,172,.14);padding-top:30px;display:flex;justify-content:space-between;font-size:18px;letter-spacing:4px;color:#4c6570}.footer span:first-child{color:#8c8065}
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <div class="eyebrow">REAL-TIME 3D / INTERACTIVE DIORAMA</div>
+    <h1>A world within glass.</h1>
+    <div class="subtitle">THE BOTTLED SEA · HORIZONTAL MODEL SHOWCASE</div>
+    <div class="edition">40 SECONDS<br />ONE LITTLE OCEAN</div>
+    <div class="model-head left-head"><span class="number">01</span><h2>Kimi K3.1 Pro</h2><span class="status">LEFT / LIVE RENDER</span></div>
+    <div class="model-head right-head"><span class="number">02</span><h2>GPT6-Astra</h2><span class="status">RIGHT / PROVIDED SOURCE</span></div>
+    <div class="slot slot-left"><video id="kimi" src="recordings/Kimi-K3.1-Pro.mp4" muted autoplay playsinline preload="auto" controls aria-label="Kimi K3.1 Pro 瓶中海洋演示"></video></div>
+    <div class="slot slot-right" aria-label="GPT6-Astra 视频"><video id="astra" src="recordings/GPT6-Astra.mp4" muted autoplay playsinline preload="auto" controls aria-label="GPT6-Astra 瓶中海洋演示"></video></div>
+    <div class="meta meta-left">THREE.JS · VOXEL OCEAN · REAL-TIME PHYSICS</div>
+    <div class="meta meta-right">GPT6-ASTRA · PROVIDED SOURCE</div>
+    <div class="footer"><span>KIMI K3.1 PRO / THE BOTTLED SEA</span><span>GPT6-ASTRA / PROVIDED SOURCE</span></div>
+  </div>
+  <script>
+    const stage = document.getElementById('stage');
+    const resize = () => stage.style.setProperty('--scale', Math.min(innerWidth / 3840, innerHeight / 2160));
+    addEventListener('resize', resize); resize();
+    if (new URLSearchParams(location.search).has('background')) document.body.classList.add('background');
+  </script>
+</body>
+</html>

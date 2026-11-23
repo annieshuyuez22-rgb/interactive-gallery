@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Destroy Any Website — Stickman</title>
+<meta name="description" content="Type any website's address and break everything: the page becomes a destructible level. A stickman, 3 page-wiping payloads, grenades. Free, in your browser." />
+<meta name="theme-color" content="#17171c" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💥</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#ff7a1a;
+    --accent2:#ffb020;
+    --bg:#17171c;
+    --panel:#20202a;
+    --line:#34343f;
+    --text:#f2f2f5;
+    --dim:#9a9aa5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:var(--bg)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text)}
+  .pix{font-family:'Press Start 2P',ui-monospace,monospace}
+  #game{position:fixed;inset:0;display:block}
+
+  .overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:20}
+  .hidden{display:none !important}
+
+  /* ---------- menu ---------- */
+  #menu{background:linear-gradient(rgba(14,10,32,.42),rgba(14,10,32,.66))}
+  #menu .card{text-align:center;max-width:700px;width:92%;background:rgba(24,20,44,.92);border:3px solid #0a0817;box-shadow:8px 8px 0 rgba(0,0,0,.45);padding:34px 40px 28px}
+  .presents{color:var(--dim);font-size:10px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px}
+  h1.title{font-family:'Press Start 2P',ui-monospace,monospace;font-size:34px;line-height:1.35;font-weight:400;margin-bottom:16px;text-shadow:3px 3px 0 #0a0817}
+  h1.title .dest{color:var(--accent)}
+  .tagline{color:var(--dim);font-size:15px;margin-bottom:26px}
+  .urlrow{display:flex;gap:10px;margin-bottom:14px}
+  #urlInput{flex:1;background:#0e0c1c;border:2px solid var(--line);border-radius:0;padding:14px 16px;font-size:15px;color:var(--text);outline:none;transition:border-color .15s;font-family:ui-monospace,monospace}
+  #urlInput:focus{border-color:var(--accent)}
+  #urlInput::placeholder{color:#5c5c66}
+  .btn{background:var(--accent);color:#171005;border:none;border-radius:0;padding:14px 22px;font-size:13px;font-weight:400;cursor:pointer;font-family:'Press Start 2P',ui-monospace,monospace;box-shadow:0 4px 0 #a3540a;transition:transform .08s,filter .15s}
+  .btn:hover{filter:brightness(1.12)}
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #a3540a}
+  .btn.ghost{background:transparent;color:var(--dim);border:2px solid var(--line);box-shadow:none}
+  .btn.ghost:hover{color:var(--text);border-color:var(--dim)}
+  .tryrow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+  .tryrow .lbl{color:var(--dim);font-size:13px;margin-right:2px}
+  .chip{background:#0e0c1c;border:2px solid var(--line);color:var(--dim);border-radius:0;padding:8px 14px;font-size:12.5px;cursor:pointer;transition:all .15s;font-family:ui-monospace,monospace}
+  .chip:hover{color:var(--text);border-color:var(--accent)}
+  .controls-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;text-align:left;font-size:12.5px;color:var(--dim);max-width:520px;margin:0 auto}
+  .controls-grid b{color:var(--text);font-weight:600}
+  .kbd{display:inline-block;background:#0e0c1c;border:1px solid var(--line);border-bottom-width:3px;border-radius:3px;padding:2px 7px;font-size:11px;color:var(--text);font-family:ui-monospace,monospace;margin-right:2px}
+  .fineprint{margin-top:22px;color:#5c5c66;font-size:12px;line-height:1.7}
+
+  /* ---------- loading ---------- */
+  #loading{background:radial-gradient(1200px 700px at 50% 30%,#23232e 0%,#141419 70%)}
+  #loading .card{text-align:center}
+  .spinner{width:54px;height:54px;border:4px solid var(--line);border-top-color:var(--accent);animation:spin 0.9s linear infinite;margin:0 auto 22px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #loadStatus{color:var(--dim);font-size:15px;margin-bottom:8px}
+  #loadUrl{color:var(--text);font-size:13px;font-family:ui-monospace,monospace;opacity:.7}
+
+  /* ---------- HUD ---------- */
+  #hud{position:fixed;inset:0;pointer-events:none;z-index:10}
+  #topbar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:12px 16px}
+  #siteInfo{background:rgba(16,14,30,.85);border:2px solid rgba(255,255,255,.1);padding:10px 14px;font-size:13px;min-width:190px}
+  #siteInfo .host{font-weight:700;font-family:ui-monospace,monospace;font-size:12px}
+  #siteInfo .pctrow{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px}
+  #siteInfo .pctlbl{color:var(--dim);font-size:10px;font-family:'Press Start 2P',monospace}
+  #siteInfo .pct{color:var(--accent2);font-family:'Press Start 2P',monospace;font-size:12px}
+  #siteInfo .pbar{height:8px;background:#0a0817;margin-top:6px;border:1px solid rgba(255,255,255,.12)}
+  #siteInfo .pbar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .2s}
+  #topbtns{display:flex;gap:8px;pointer-events:auto}
+  .iconbtn{width:38px;height:38px;border-radius:0;background:rgba(16,14,30,.85);border:2px solid rgba(255,255,255,.1);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .iconbtn:hover{border-color:var(--accent)}
+  .iconbtn.off{opacity:.45;text-decoration:line-through}
+  #weapons{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(10,8,20,.85);border:2px solid rgba(255,255,255,.1);padding:5px}
+  .slot{width:64px;height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .1s;position:relative;cursor:pointer;border:2px solid transparent}
+  .slot canvas{width:44px;height:30px;image-rendering:pixelated}
+  .slot .key{position:absolute;top:1px;left:4px;font-size:9px;color:var(--dim);font-family:'Press Start 2P',monospace}
+  .slot .nm{font-size:5.5px;color:var(--dim);margin-top:2px;font-family:'Press Start 2P',monospace}
+  .slot.active{border-color:var(--accent);background:rgba(255,122,26,.18);transform:translateY(-5px)}
+  .slot.active .nm{color:var(--accent2)}
+  #wpnTip{position:absolute;bottom:84px;left:50%;transform:translateX(-50%);font-family:'Press Start 2P',monospace;font-size:13px;color:#fff;text-shadow:2px 2px 0 #0a0817;opacity:0;transition:opacity .3s;pointer-events:none}
+  #wpnTip.show{opacity:1;transition:opacity .05s}
+  #hint{position:absolute;bottom:14px;right:16px;color:rgba(255,255,255,.4);font-size:11.5px;text-align:right;line-height:1.7}
+  #hint .kbd{background:rgba(16,14,30,.85);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.75)}
+
+  /* ---------- pause & win ---------- */
+  #pause,#win{background:rgba(10,8,22,.72);backdrop-filter:blur(4px)}
+  #pause .card,#win .card{background:rgba(24,20,44,.95);border:3px solid #0a0817;box-shadow:8px 8px 0 rgba(0,0,0,.45);padding:34px 40px;text-align:center;max-width:560px;width:92%}
+  #pause h2,#win h2{font-family:'Press Start 2P',monospace;font-size:22px;font-weight:400;margin-bottom:10px;text-shadow:3px 3px 0 #0a0817}
+  #win h2{color:var(--accent2)}
+  .sub{color:var(--dim);font-size:14px;margin-bottom:22px}
+  .setrow{display:flex;justify-content:space-between;align-items:center;padding:10px 2px;border-bottom:1px solid var(--line);font-size:14px}
+  .toggle{width:46px;height:26px;background:#0e0c1c;border:2px solid var(--line);position:relative;cursor:pointer;transition:background .15s}
+  .toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;background:var(--dim);transition:all .15s}
+  .toggle.on{background:var(--accent)}
+  .toggle.on::after{left:22px;background:#fff}
+  .btnrow{display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+  .stats{display:flex;gap:26px;justify-content:center;margin:18px 0 6px}
+  .stat .v{font-size:18px;color:var(--accent2);font-family:'Press Start 2P',monospace}
+  .stat .k{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+  .bigpct{font-size:48px;color:var(--accent2);line-height:1;margin:14px 0 4px;font-family:'Press Start 2P',monospace;text-shadow:4px 4px 0 #0a0817}
+
+  #vignette{position:fixed;inset:0;pointer-events:none;z-index:5;box-shadow:inset 0 0 140px rgba(10,8,25,.4)}
+  @media (max-width:760px){
+    h1.title{font-size:20px}
+    #hint{display:none}
+    .controls-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="vignette"></div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="topbar">
+    <div id="siteInfo">
+      <div class="host">website</div>
+      <div class="pctrow"><span class="pctlbl">DESTROYED</span><span class="pct">0%</span></div>
+      <div class="pbar"><i></i></div>
+    </div>
+    <div id="topbtns">
+      <button class="iconbtn" id="btnSound" title="Sound">🔊</button>
+      <button class="iconbtn" id="btnBg" title="Background">🌌</button>
+      <button class="iconbtn" id="btnPause" title="Menu (Esc)">☰</button>
+    </div>
+  </div>
+  <div id="weapons"></div>
+  <div id="wpnTip"></div>
+  <div id="hint">
+    <span class="kbd">A</span><span class="kbd">D</span> run &nbsp;<span class="kbd">Space</span> jump / flip / fly<br/>
+    <span class="kbd">S</span> slam &nbsp; <span class="kbd">🖱</span> aim &amp; blast &nbsp; <span class="kbd">R</span> grenade<br/>
+    <span class="kbd">1–3</span> / wheel — blast size (20/30/50%) &nbsp; <span class="kbd">Esc</span> menu
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu" class="overlay">
+  <div class="card">
+    <div class="presents">Stickman Presents</div>
+    <h1 class="title">DESTROY <span class="dest">ANY WEBSITE</span></h1>
+    <div class="tagline">Type an address, break everything.</div>
+    <div class="urlrow">
+      <input id="urlInput" placeholder="example.com" autocomplete="off" spellcheck="false"/>
+      <button class="btn" id="btnPlay">DESTROY →</button>
+    </div>
+    <div class="tryrow">
+      <span class="lbl">Try</span>
+      <button class="chip" data-url="https://en.wikipedia.org/wiki/Stick_figure">wikipedia: stick figure</button>
+      <button class="chip" data-url="https://news.ycombinator.com">hacker news</button>
+      <button class="chip" data-url="https://example.com">example.com</button>
+      <button class="chip" data-url="demo">offline demo</button>
+    </div>
+    <div class="controls-grid">
+      <div><span class="kbd">A</span><span class="kbd">D</span> / <span class="kbd">←</span><span class="kbd">→</span> <b>run</b></div>
+      <div><span class="kbd">Space</span> <b>jump · again: flip · hold: fly</b></div>
+      <div><span class="kbd">S</span> <b>slam down</b></div>
+      <div><span class="kbd">Mouse</span> <b>aim · click: blast</b></div>
+      <div><span class="kbd">Right click</span> <b>grenade</b></div>
+      <div><span class="kbd">1–3</span> / wheel <b>blast size</b></div>
+    </div>
+    <div class="fineprint">The page is screenshotted, sliced into tiles, and handed to a very angry stickman.<br/>S wipes 20% · M wipes 30% · L wipes 50% of what's on screen · Grenades</div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="loading" class="overlay hidden">
+  <div class="card">
+    <div class="spinner"></div>
+    <div id="loadStatus">Contacting the website…</div>
+    <div id="loadUrl"></div>
+  </div>
+</div>
+
+<!-- PAUSE -->
+<div id="pause" class="overlay hidden">
+  <div class="card">
+    <h2>Paused</h2>
+    <div class="sub" id="pauseHost">—</div>
+    <div class="setrow"><span>🔊 Sound</span><div class="toggle on" id="tgSound"></div></div>
+    <div class="setrow"><span>🌌 Dark background</span><div class="toggle on" id="tgBg"></div></div>
+    <div class="setrow"><span>⌨️ Controls</span><span style="color:var(--dim);font-size:12.5px">A/D run · Space jump/fly · S slam · LMB blast · RMB grenade · 1–3 blast size</span></div>
+    <div class="btnrow">
+      <button class="btn" id="btnResume">RESUME</button>
+      <button class="btn ghost" id="btnRestart">RESTART LEVEL</button>
+      <button class="btn ghost" id="btnNew">NEW WEBSITE</button>
+    </div>
+  </div>
+</div>
+
+<!-- WIN -->
+<div id="win" class="overlay hidden">
+  <div class="card">
+    <h2>Website destroyed</h2>
+    <div class="bigpct">100%</div>
+    <div class="sub" id="winHost">—</div>
+    <div class="stats">
+      <div class="stat"><div class="v" id="stTime">0:00</div><div class="k">Time</div></div>
+      <div class="stat"><div class="v" id="stTiles">0</div><div class="k">Tiles smashed</div></div>
+      <div class="stat"><div class="v" id="stShots">0</div><div class="k">Shots fired</div></div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" id="btnAgain">DESTROY ANOTHER →</button>
+      <button class="btn ghost" id="btnReplay">REPLAY THIS ONE</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

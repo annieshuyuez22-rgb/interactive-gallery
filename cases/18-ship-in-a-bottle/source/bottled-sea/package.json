@@ -1,0 +1,26 @@
+{
+  "name": "bottled-sea-kimi-k31-pro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "record": "node scripts/record.mjs",
+    "compose": "node scripts/compose.mjs",
+    "verify": "node scripts/verify.mjs",
+    "verify:record": "node scripts/verify-recording.mjs",
+    "verify:playback": "node scripts/verify-playback.mjs",
+    "soak": "node scripts/soak.mjs"
+  },
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "0.185.0",
+    "puppeteer-core": "^25.18.1",
+    "typescript": "5.9.3",
+    "vite": "^7.3.8"
+  }
+}

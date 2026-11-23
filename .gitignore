@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.log
+.poster-raw.jpg
+**/recordings/qc/*
+!**/recordings/qc/.gitkeep

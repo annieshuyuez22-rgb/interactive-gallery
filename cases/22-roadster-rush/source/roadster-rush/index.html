@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Roadster Rush</title>
+<style>
+  :root{
+    --white:#f4f0ec;
+    --muted:rgba(244,240,236,.5);
+    --glass:rgba(13,13,15,.72);
+    --line:rgba(255,255,255,.12);
+    --pink:#ff245d;
+  }
+  *{box-sizing:border-box}
+  html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#080708}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--white);user-select:none;-webkit-user-select:none}
+  canvas{display:block;width:100%;height:100%;outline:none}
+  button{font:inherit;color:inherit}
+  .hidden{display:none!important}
+
+  #vignette{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at 50% 43%,transparent 48%,rgba(22,7,18,.22) 100%);mix-blend-mode:multiply}
+  #grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E")}
+
+  #titleScreen{position:fixed;inset:0;z-index:10;text-align:center;pointer-events:none;background:radial-gradient(ellipse at 50% 64%,rgba(0,0,0,.06) 0%,rgba(0,0,0,.56) 45%,rgba(0,0,0,.9) 100%);transition:opacity 1s ease}
+  #titleScreen.departing{opacity:0}
+  .title-lockup{position:absolute;top:7.6%;left:50%;transform:translateX(-50%);width:100%}
+  .title-lockup h1{margin:0;font-size:clamp(52px,7.25vw,116px);line-height:1;font-weight:100;letter-spacing:.245em;text-indent:.245em;color:#f5f2f0}
+  .title-rule{display:flex;align-items:center;justify-content:center;gap:18px;margin:20px auto 17px}
+  .title-rule:before,.title-rule:after{content:"";width:44px;height:1px;background:rgba(255,255,255,.16)}
+  .title-rule:after{background:rgba(255,36,93,.38)}
+  .title-rule span{font-size:12px;font-weight:300;letter-spacing:.55em;text-indent:.55em;color:rgba(255,255,255,.72)}
+  .tagline{margin:0;font-size:clamp(13px,1.15vw,19px);font-weight:200;letter-spacing:.105em;color:rgba(255,255,255,.48)}
+  .title-bottom{position:absolute;bottom:3.6%;left:50%;transform:translateX(-50%);width:100%;font-size:11px;font-weight:300;letter-spacing:.34em;color:rgba(255,255,255,.5)}
+  .press-start{animation:breathe 2.3s ease-in-out infinite}
+  .best{margin-top:20px;color:rgba(255,255,255,.65);letter-spacing:.25em}
+  .title-controls{margin-top:20px;font-size:10px;letter-spacing:.19em;color:rgba(255,255,255,.32)}
+  .title-controls b{font-weight:500;color:rgba(255,255,255,.62)}
+  .title-controls i{font-style:normal;margin:0 13px;color:rgba(255,255,255,.18)}
+  @keyframes breathe{0%,100%{opacity:.42}50%{opacity:.9}}
+
+  #scoreCard{position:fixed;z-index:8;top:12px;left:12px;width:170px;min-height:113px;padding:11px 14px 12px;background:linear-gradient(145deg,rgba(14,14,16,.83),rgba(14,14,16,.6));border:1px solid rgba(255,255,255,.08);border-radius:12px;box-shadow:0 7px 24px rgba(0,0,0,.18);backdrop-filter:blur(9px);transition:opacity .3s}
+  .score-head{display:flex;justify-content:space-between;align-items:center;font-size:8px;letter-spacing:.25em;color:rgba(255,255,255,.36)}
+  #combo{font-size:10px;letter-spacing:.05em;color:rgba(255,255,255,.65)}
+  #score{margin-top:1px;font-size:30px;line-height:1.05;font-weight:200;letter-spacing:.035em;font-variant-numeric:tabular-nums}
+  #distance{margin-top:6px;font-size:9px;letter-spacing:.15em;color:rgba(255,255,255,.45);font-variant-numeric:tabular-nums}
+  .air-label{margin-top:11px;font-size:7px;letter-spacing:.28em;color:rgba(255,255,255,.33)}
+  .air-track{width:100%;height:2px;margin-top:5px;background:rgba(255,255,255,.13);overflow:hidden}
+  #airFill{height:100%;width:100%;background:linear-gradient(90deg,#82d8dc,#f1f5ef);box-shadow:0 0 7px rgba(127,224,231,.5);transform-origin:left}
+
+  #topRight{position:fixed;z-index:12;top:13px;right:13px;display:flex;gap:7px;align-items:center}
+  .icon-button{display:flex;align-items:center;justify-content:center;width:34px;height:32px;padding:0;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:rgba(15,15,17,.68);backdrop-filter:blur(8px);cursor:pointer;opacity:.78;transition:opacity .2s,background .2s;pointer-events:auto}
+  .icon-button:hover{opacity:1;background:rgba(30,28,31,.82)}
+  .icon-button svg{width:14px;height:14px;fill:currentColor;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  #pauseBtn{font-size:12px;letter-spacing:-2px;padding-right:2px}
+  #boltCounter{display:flex;align-items:center;gap:7px;height:32px;min-width:52px;padding:0 11px;border-radius:10px;background:rgba(15,15,17,.68);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(8px);font-size:12px;font-weight:300;font-variant-numeric:tabular-nums}
+  #boltCounter svg{width:11px;height:14px;fill:#fff;stroke:none}
+
+  #toast{position:fixed;z-index:9;top:15%;left:50%;transform:translate(-50%,-8px);padding:9px 15px;border:1px solid rgba(255,255,255,.13);border-radius:5px;background:rgba(16,15,17,.74);box-shadow:0 4px 20px rgba(0,0,0,.15);font-size:9px;font-weight:400;letter-spacing:.21em;white-space:nowrap;opacity:0;transition:opacity .35s,transform .35s;pointer-events:none}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  #gameoverScreen{position:fixed;inset:0;z-index:11;display:flex;align-items:center;justify-content:center;background:rgba(7,5,8,.48);backdrop-blur:2px;opacity:0;transition:opacity .8s;pointer-events:none}
+  #gameoverScreen.visible{opacity:1;pointer-events:auto}
+  .loss-card{width:320px;padding:29px 25px 25px;transform:translateY(12px);border:1px solid rgba(255,255,255,.055);border-radius:13px;background:linear-gradient(150deg,rgba(14,14,16,.96),rgba(12,11,14,.88));box-shadow:0 24px 80px rgba(0,0,0,.45);text-align:center;transition:transform .8s}
+  #gameoverScreen.visible .loss-card{transform:translateY(0)}
+  .loss-title{font-size:11px;font-weight:400;letter-spacing:.43em;text-indent:.43em;color:rgba(255,255,255,.85)}
+  .loss-rule{width:28px;height:1px;margin:12px auto;background:var(--pink);opacity:.5}
+  .loss-sub{font-size:10px;font-weight:300;letter-spacing:.09em;color:rgba(255,255,255,.42)}
+  #finalScore{margin-top:18px;font-size:54px;line-height:1;font-weight:100;letter-spacing:.025em;font-variant-numeric:tabular-nums}
+  #bestLabel{margin-top:8px;font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,.32)}
+  .stats{display:flex;justify-content:center;gap:36px;margin-top:24px}
+  .stat-value{font-size:17px;font-weight:300;font-variant-numeric:tabular-nums}
+  .stat-label{margin-top:5px;font-size:7px;letter-spacing:.19em;color:rgba(255,255,255,.32);white-space:nowrap}
+  #retryBtn{margin:24px auto 0;padding:7px 14px;border:0;border-bottom:1px solid rgba(255,255,255,.35);background:none;font-size:10px;letter-spacing:.38em;text-indent:.38em;cursor:pointer;opacity:.82}
+  #retryBtn:hover{opacity:1;border-color:var(--pink)}
+  .retry-hint{margin-top:13px;font-size:7px;letter-spacing:.21em;color:rgba(255,255,255,.28)}
+
+  #flash{position:fixed;inset:0;z-index:7;pointer-events:none;background:radial-gradient(circle at 50% 55%,rgba(255,238,153,.9),rgba(255,104,43,.25) 35%,transparent 72%);opacity:0}
+  #flash.burst{animation:flash .75s ease-out}
+  @keyframes flash{0%{opacity:1}100%{opacity:0}}
+
+  body[data-state="title"] #scoreCard,body[data-state="title"] #pauseBtn,body[data-state="title"] #boltCounter,
+  body[data-state="gameover"] #scoreCard,body[data-state="gameover"] #pauseBtn,body[data-state="gameover"] #boltCounter{display:none}
+  body[data-state="title"] #topRight{top:17px;right:18px}
+  body[data-state="title"] #vignette{background:radial-gradient(ellipse at 50% 58%,transparent 15%,rgba(0,0,0,.66) 78%)}
+  body[data-state="paused"] #scoreCard{opacity:.45}
+
+  @media(max-width:700px){
+    #scoreCard{transform:scale(.82);transform-origin:top left}
+    #topRight{transform:scale(.86);transform-origin:top right}
+    .title-lockup{top:11%}
+    .title-lockup h1{font-size:12vw;letter-spacing:.14em;text-indent:.14em}
+    .title-controls{line-height:2.2;width:90%;margin-left:auto;margin-right:auto}
+    .title-controls i{margin:0 5px}
+    .loss-card{width:min(320px,88vw)}
+  }
+</style>
+</head>
+<body data-state="title">
+<div id="vignette"></div>
+<div id="grain"></div>
+<div id="flash"></div>
+
+<section id="titleScreen">
+  <div class="title-lockup">
+    <h1>ROADSTER</h1>
+    <div class="title-rule"><span>RUSH</span></div>
+    <p class="tagline">Traffic is a ground-level problem.</p>
+  </div>
+  <div class="title-bottom">
+    <div class="press-start">PRESS SPACE TO START</div>
+    <div class="best">BEST <span id="titleBest">4,024</span></div>
+    <div class="title-controls"><b>A/D</b> LANES <i>•</i> <b>SPACE</b> HOP AND FLY <i>•</i> <b>Q/E</b> BARREL ROLL <i>•</i> <b>SHIFT</b> BOOST</div>
+  </div>
+</section>
+
+<section id="scoreCard">
+  <div class="score-head"><span>SCORE</span><span id="combo">×1</span></div>
+  <div id="score">0</div>
+  <div id="distance">0 M</div>
+  <div class="air-label">AIR</div>
+  <div class="air-track"><div id="airFill"></div></div>
+</section>
+
+<div id="topRight">
+  <button class="icon-button" id="pauseBtn" aria-label="Pause">Ⅱ</button>
+  <button class="icon-button" id="muteBtn" aria-label="Mute">
+    <svg id="soundOn" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path fill="none" d="M16 8c1.3 1 2 2.3 2 4s-.7 3-2 4M18.5 5.5c2 1.7 3 3.8 3 6.5s-1 4.8-3 6.5"/></svg>
+    <svg id="soundOff" viewBox="0 0 24 24" style="display:none"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path fill="none" d="M17 9l5 5m0-5l-5 5"/></svg>
+  </button>
+  <div id="boltCounter"><svg viewBox="0 0 12 18"><path d="M7.4 0L0 10h4.7L3.8 18 12 7H7.1L7.4 0z"/></svg><span id="bolts">0</span></div>
+</div>
+
+<div id="toast">WELCOME TO THE SKY LANE</div>
+
+<section id="gameoverScreen">
+  <div class="loss-card">
+    <div class="loss-title">TOTAL LOSS</div>
+    <div class="loss-rule"></div>
+    <div class="loss-sub">That was a car.</div>
+    <div id="finalScore">0</div>
+    <div id="bestLabel">BEST 4,024</div>
+    <div class="stats">
+      <div><div class="stat-value" id="finalDistance">0</div><div class="stat-label">DISTANCE M</div></div>
+      <div><div class="stat-value" id="finalBolts">0</div><div class="stat-label">BOLTS</div></div>
+      <div><div class="stat-value" id="finalCombo">×1</div><div class="stat-label">BEST COMBO</div></div>
+    </div>
+    <button id="retryBtn">RETRY</button>
+    <div class="retry-hint">SPACE TO GO AGAIN</div>
+  </div>
+</section>
+
+<script type="importmap">
+{"imports":{"three":"./vendor/three.module.js"}}
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

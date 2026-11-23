@@ -1,0 +1,896 @@
+[
+  {
+    "number": 1,
+    "slug": "demolition-physics",
+    "title": "Demolition Physics",
+    "zh": "拆楼物理",
+    "category": "physics",
+    "summary": "A wrecking-ball study with breakable masonry, tumbling debris, impact dust, and persistent rubble.",
+    "tech": [
+      "HTML5 Canvas",
+      "Rigid-body physics",
+      "Particles"
+    ],
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "featured": false,
+    "reference": "https://x.com/atomic_chat_hq/status/2080760629653102958",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "【原话 · single-html-canvas】\nBuild a single self-contained HTML file (all HTML, CSS, and JavaScript inline, no external assets, no CDN, no external libraries) that renders a demolition physics scene on an HTML5 canvas:\n\nA crane on the right side of the scene swings a heavy wrecking ball into an apartment block standing on the left. The building is made of many separate bricks/blocks. On each impact, blocks break loose, fly and tumble with rotation, collide with each other and the ground with inertia and bounce, and pile up as rubble. Add dust puffs on impacts. The wrecking ball swings back and forth automatically, smashing the building bit by bit until it fully collapses, then the scene loops after a short pause.\n\nRequirements:\n- Real 2D physics: gravity, velocity, angular rotation, brick-vs-brick collision, ground friction/bounce.\n- Bright daylight colors, fixed side camera, scene runs on its own in one continuous take.\n- Pseudo-3D look (simple shading on blocks is enough).\n- Page must load with zero console errors at a 1776x820 viewport.\n- Write the result to a file named index.html in the current working directory."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Build three separate self-contained HTML files, each an interactive 3D physics scene with inline CSS and application JavaScript. Use procedural geometry and materials with no external assets; CDN physics/rendering libraries are allowed. Preserve a crisp low-poly cartoon style: cobalt sky, emerald grass, terracotta masonry, safety-yellow machinery, and clear blue water. Each scene begins its physical event automatically.\n\n1. A tornado that sucks in a whole field: populate rolling farmland with 12 houses, 3 barns, 40 trees, fences, hay bales, and loose props. A visibly rotating funnel travels across the field. Apply distance-dependent radial suction, tangential force, and uplift to nearby rigid bodies: fences detach, roofs lift, and objects spiral upward before ejecting and colliding with the ground. Layer ground-hugging dust, airborne leaves, and larger debris without obscuring the funnel.\n\n2. A wrecking ball taking down an apartment block: construct a six-story brick building with visible floors, windows, and bonded wall blocks. A yellow lattice crane suspends a brushed-steel ball from a constrained chain. Contact breaks local bonds first; cracks propagate, unsupported sections collapse, and rubble settles into persistent piles. Repeated swings progressively demolish the building. Include impact dust, brick chips, chain tension, and ball recoil.\n\n3. An overloaded truck collapsing a truss bridge: an orange steel truss spans a translucent flowing river. The loaded truck visibly compresses its suspension; the bridge deflects before overloaded joints fail sequentially. Deck sections and truck fall, strike the river, generate spray and expanding ripples, then sink or float according to density.\n\nUse gravity, collision response, mass, angular momentum, breakable constraints, and a fixed simulation timestep; destruction must emerge from forces. Provide Pause, Reset, speed controls, and working 28mm aerial, 40mm action, and 65mm impact camera presets. Keep contact points readable and objects out of intact surfaces."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 2,
+    "slug": "interactive-cloth-lab",
+    "title": "Interactive Cloth Lab",
+    "zh": "布料风场",
+    "category": "physics",
+    "summary": "A high-density cloth surface with turbulent wind, direct dragging, pressure pulses, and live simulation controls.",
+    "tech": [
+      "WebGL",
+      "Verlet cloth",
+      "Wind field"
+    ],
+    "featured": true,
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "reference": "https://x.com/chetaslua/status/2047393912122486845?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Build a single self-contained HTML file, all CSS and JavaScript inline, no external assets: an interactive cloth physics website called \"INTERACTIVE CLOTH LAB\" with a dramatic wind effect at a smooth 60 FPS.\n\nThe scene is one large piece of dark, sheer fabric simulated as a verlet-integration cloth grid of roughly 2300 particles (about 48 by 48 points connected by structural and shear constraints) filling the viewport, rendered in WebGL. The fabric ripples in slow diagonal waves driven by a turbulent wind field based on curl or simplex noise. Background is deep charcoal to near-black; the fabric is deep grey with glossy reflections, a soft sheen on the folds, and bright white highlights along the wave crests. Use one accent color, a mint green close to #7CFFB2. The camera is fixed at a slight low angle, fabric occupying most of the frame.\n\nInteractions: a vertical \"WIND\" slider on the left edge (mint accent, small wind icon on top) that changes wind strength live; on the right a glassmorphic \"SIMULATION\" panel with sliders for Turbulence (default about 39), Stiffness (default 100) and Sheen (default 100), each showing its live value; a translucent \"LIVE FABRIC ENGINE\" status card listing MESH high density, LIGHT gloss plus reflection, INPUT drag plus pull, WIND turbulent. The user can grab any fold with the mouse and drag or pull it, using constraint-based picking with a soft radial influence; a \"PULSE\" button sends a pressure pulse wave through the fabric. Show a real-time readout in the top-right corner, like \"60 FPS · 2304 PTS\".\n\nUI is a sleek dark landing-page layout: top nav bar labeled \"INTERACTIVE CLOTH LAB\" with tabs SHOWCASE / PHYSICS / TEXTURE / CONTROLS, a center-left hero title in huge bold type with the subtitle \"Interactive WebGL cloth system\", and a bottom bar titled \"KINETIC BANNER\" with the hint \"Grab any fold, tune the wind field, or send a pressure pulse through the mesh.\" Everything must feel buttery smooth and physically plausible, with satisfying spring-back and no jitter, polished like a premium studio site. Physics, UI and interaction are all part of the deliverable."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Build INTERACTIVE CLOTH LAB as one self-contained HTML file with inline CSS/JavaScript, no external visual assets, and WebGL rendering; a Three.js CDN import is allowed. Target 60 FPS with a 48 × 48 Verlet cloth mesh: exactly 2304 particles joined by structural, shear, and bending constraints.\n\nFill most of the viewport with dark sheer fabric anchored along its upper edge. Use a fixed, slightly low camera, diagonal turbulent wind, and broad folds passing into smaller ripples. Show a fine procedural weave, translucent thin edges, and directional white sheen that follows fiber orientation rather than making the cloth look metallic. Use charcoal #090C10, deep-gray fabric, soft-white highlights, and mint #7CFFB2 as the sole accent. Place a large soft light above-left and a restrained rim light behind the fabric.\n\nImplement pointer picking on the actual cloth surface with a soft radial influence. Dragging stretches nearby folds; release produces damped spring-back. Prevent explosive stretching and visible self-intersections. PULSE sends an expanding pressure wave through the mesh. A vertical WIND slider on the left changes wind strength continuously. The right SIMULATION glassmorphic panel contains Turbulence, Stiffness, and Sheen sliders with live values, initially 39, 100, and 100. Every control must affect its named property.\n\nPreserve the INTERACTIVE CLOTH LAB navigation label, large wordmark, SHOWCASE / PHYSICS / TEXTURE / CONTROLS tabs, and subtitle Interactive WebGL cloth system. Tabs reveal relevant information or controls without replacing the animated fabric. Include the translucent LIVE FABRIC ENGINE card with MESH high density, LIGHT gloss + reflection, INPUT drag + pull, and WIND turbulent. Display measured FPS and the actual particle count at top-right.\n\nUse the exact subheadline: Grab any fold, tune the wind field, or send a pressure pulse through the mesh. Keep KINETIC BANNER in the bottom bar. Animate slider feedback, button presses, and tab transitions; maintain readable typography and unobstructed dragging on smaller screens."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo-01.mp4",
+        "label": "Presentation 1"
+      },
+      {
+        "path": "demo-02.mp4",
+        "label": "Presentation 2"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 3,
+    "slug": "cannon-brick-wall",
+    "title": "Cannon & Brick Wall",
+    "zh": "大炮打砖墙",
+    "category": "physics",
+    "summary": "Three compact physics scenes: a cannon demolishing masonry, bowling impacts, and a traveling tornado.",
+    "tech": [
+      "HTML5 Canvas",
+      "Collision response",
+      "Debris simulation"
+    ],
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "featured": false,
+    "reference": "https://x.com/atomic_chat_hq/status/2072022716400484471?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Build three self-contained HTML5 canvas scenes with real physics:\n\n- A cannon demolishing a brick wall\n- A bowling ball knocking down the pins\n- A tornado that sucks in random objects"
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Build three separate self-contained HTML5 canvas scenes with real physics. Deliver three complete runnable HTML files with their own inline styling and JavaScript. Render the scenes on canvas, and make every collision affect the simulation rather than triggering a canned destruction animation.\n\n1. A cannon demolishing a brick wall: place a black iron cannon at lower-left, a staggered orange-red wall of at least 120 individually simulated bricks at right, a cobalt sky, and dark ground. The cannon recoils when firing; its projectile follows a gravity-driven arc. A direct hit dislodges nearby bricks, breaks supporting connections, and causes unsupported masonry to tumble into a persistent rubble pile. Include a brief warm muzzle flash, smoke that expands and fades, mortar dust, and bouncing chips. Let users aim, change launch power, and fire again.\n\n2. A bowling ball knocking down the pins: build a polished wooden lane with ten ivory pins in the standard triangular arrangement and red neck bands. Animate ball rolling, pin rotation, pin-to-pin impacts, and sliding before settling. Provide drag-to-aim, launch strength, two throws per frame, an accurate standing-pin count, and a reset. A strike produces restrained celebratory particles above the lane. Reflections should track the moving ball and pins.\n\n3. A tornado that sucks in random objects: scatter at least 40 objects with different masses and shapes. A traveling funnel applies inward, rotational, and upward forces, lifting objects into visible spiral trajectories before ejecting them. Objects collide, rotate, and land under gravity. Include dust concentrated near the ground and lighter airborne debris. Users can steer the tornado and adjust its strength.\n\nUse stable timesteps, restitution, friction, and angular motion; prevent fast projectiles passing through walls. Start each scene with an automatic demonstration. Give each a compact Pause/Reset HUD, useful numeric controls, and camera framing that keeps the active event visible."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 4,
+    "slug": "vehicle-physics",
+    "title": "Vehicle Physics Trio",
+    "zh": "小车、火车物理碰撞",
+    "category": "physics",
+    "summary": "A train derailment, a mid-air canyon collision, and a monster-truck crush sequence in three physics studies.",
+    "tech": [
+      "Vanilla JavaScript",
+      "2D dynamics",
+      "Vehicle physics"
+    ],
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "featured": false,
+    "reference": "https://x.com/atomic_chat_hq/status/2072446067962978411?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Build three self-contained HTML5 canvas scenes with real physics demos, one complete runnable HTML file per scene, all CSS and JavaScript inline. Write all physics yourself in vanilla JavaScript — no libraries, no external assets; draw every visual (vehicles, terrain, water, sky, particles) with canvas code. Each scene must simulate real 2D rigid-body physics: gravity, momentum, torque and rotation, collision detection and response, debris, and particle effects. Nothing may clip through the ground or float unrealistically; bodies must break, bounce, and fall in physically plausible ways. Each scene animates automatically on load and plays out its full event.\n\nScene 1: A train derailing off a broken bridge into the water. A multi-car train — a locomotive plus several cars in different bright colors — rolls across an elevated bridge spanning a wide body of water, with bridge piers visible below. A section of the bridge is broken and collapsed, leaving a gap. When the train reaches the gap it derails: cars pitch, twist, and tumble off the edge one after another, some still coupled together, then splash into the water with white spray, expanding ripples, and rising bubbles, and slowly sink. Include a blue sky with drifting clouds and water with subtle surface reflections.\n\nScene 2: Two cars jumping off ramps and colliding mid-air over a canyon. In a desert canyon setting with steep rocky cliffs, two cars on opposite rims each accelerate up a wooden or dirt launch ramp, go airborne in high arcs, and smash into each other mid-air above the gap. On impact, glass shards, wheels, and body parts scatter with realistic spin and trajectories, and the wreckage tumbles down into the canyon below, bouncing off the rock walls.\n\nScene 3: A monster truck crushing a row of parked cars. At a stadium monster truck show with crowd stands in the background, a BIGFOOT-style monster truck with oversized tires drives over a row of parked cars. Car roofs and bodies crumple and deform under the wheels, the truck's suspension bounces over each wreck, and dust and debris fly with every impact."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Create three independent physics demos, each delivered as one self-contained HTML file with all CSS and JavaScript inline. Use HTML5 canvas and vanilla JavaScript only: no libraries or external assets. Draw vehicles, terrain, water, sky, spectators, and particles with canvas code. Implement real 2D rigid-body physics with gravity, momentum, angular velocity, friction, collision detection/response, and breakable connections. Each complete event plays automatically on load.\n\n1. Train derailment: a graphite locomotive pulls six differently colored cars across a high stone-pier bridge toward a broken span. Wheels rotate with travel speed; couplers transmit tension. At the gap, cars pitch and tumble sequentially, remaining coupled until forces exceed their connection strength. On entering teal water, bodies displace the surface, throw spray, generate widening ripples and bubbles, lose velocity through drag, and sink. Show reflections, drifting clouds, and debris that floats or submerges according to density.\n\n2. Two cars jumping off ramps and colliding mid-air over a canyon: crimson and electric-blue cars accelerate from opposite sandstone cliffs. Their suspension compresses on the ramps before launch. Solve the airborne collision from actual contact: panels deform, glass fragments scatter, wheels detach where joints fail, and both wrecks tumble into the canyon. Include tire dust, sparks at metal contact, and secondary impacts on ledges.\n\n3. A monster truck crushing a row of parked cars: an orange BIGFOOT-style truck with oversized tires drives across six parked cars in a stadium. Tires rotate against surfaces; suspension compresses and rebounds. Represent crushable car bodies with deformable or breakable structures that retain damage. Include dust, scattered components, stepped spectator stands, and a readable Monster Truck Show banner.\n\nUse a fixed timestep with substeps, prevent ground penetration and hovering, and preserve settled debris. Add Pause, Reset, Slow Motion, and a compact impact-speed readout. Smooth 2D tracking and adjustable zoom must retain the full action while revealing contact details."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes the self-contained Monster Truck scene from this three-part study.",
+    "apps": [
+      {
+        "label": "Run Monster Truck",
+        "path": "source/monster-truck/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 5,
+    "slug": "galton-board",
+    "title": "Galton Board",
+    "zh": "粒子碰撞、高尔顿板、方块碰撞",
+    "category": "physics",
+    "summary": "A polished bean machine where a bell-shaped distribution emerges from real ball–peg and ball–ball collisions.",
+    "tech": [
+      "HTML5 Canvas",
+      "Elastic collisions",
+      "Live histogram"
+    ],
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "featured": false,
+    "reference": "https://x.com/atomic_chat_hq/status/2062676779362357398?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Build a polished Galton board (bean machine) physics simulation as a single self-contained HTML file — everything inline (HTML + CSS + JS), no external libraries, rendered on an HTML5 canvas with real 2D physics, running smoothly at 60 fps.\n\nThe canvas fills the window with a dark, near-black background. In the upper-middle area sits a triangular lattice of small round pegs: about 12 rows, staggered so that a falling ball always strikes exactly one peg per row. Draw each peg as a small light-gray dot, with slightly wider spacing in the lower rows. At the top center of the board there is a single fixed drop slot; balls are released from it one at a time at a steady rate, each drop given a tiny random horizontal jitter so no two trajectories are identical.\n\nEach ball is a small filled circle in a bright saturated color — vary the hue per ball or per drop batch (cyan, magenta, yellow, orange, lime) so individual paths are easy to follow against the dark background. Implement full rigid-body dynamics: constant gravity, elastic ball–peg collisions with restitution, ball–ball collisions among active balls, and wall damping. When a ball hits a peg it must deflect left or right based on the impact offset — no scripted random left/right choices; the binomial distribution must emerge naturally from the collisions themselves.\n\nBelow the peg array, a row of narrow vertical bins separated by thin divider walls spans the width of the board. Balls land in a bin, stack and settle visually inside it. As balls accumulate, draw a rising histogram bar in each bin (teal-green bars) so the emerging bell-shaped normal distribution is visible in real time.\n\nAdd a small HUD in a corner: a total-balls-dropped counter and drop controls (pause/resume button plus a speed slider). Keep it performant with several hundred balls on screen; cull or recycle balls once settled. Deliver the complete working file, ready to open in a browser."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Build a Galton board physics simulation as a single self-contained HTML file with inline HTML, CSS, and JavaScript. Use HTML5 canvas, no external libraries, and real 2D collision physics. Target 60 FPS with several hundred visible balls.\n\nCenter a precisely aligned triangular lattice of 12 staggered peg rows above 13 collection bins. Use a near-black #080D14 background, pale silver pegs, fine graphite dividers, and saturated cyan, coral, amber, and violet balls. Give pegs small directional highlights and cast subtle contact shadows without blurring their outlines. A fixed top-center slot releases one ball at a time with a tiny horizontal position jitter.\n\nImplement gravity, circular ball–peg contacts, ball–ball collisions, restitution, friction, and damped wall impacts. Balls must physically deflect according to contact geometry; never choose their paths or destination bins randomly. Use sufficiently small substeps to prevent tunneling and tune spacing for reliable downward progress through every peg row. Briefly brighten a peg when struck and leave a short, fading trail on the most recently released ball so its trajectory remains legible.\n\nKeep accumulated balls visible in the bins, stacking and settling without overlap. Count a ball only after it has entered and settled in a bin. Show teal histogram bars behind the piles, with exact per-bin counts and a shared scale that updates smoothly. Optionally overlay the theoretical binomial profile as a thin dashed curve explicitly labeled as a reference, never as simulated data.\n\nProvide measured FPS, active and settled ball counts, total released, Pause/Resume, Reset, Single Drop, and a drop-rate slider from 1 to 20 balls per second. Start releasing balls automatically. Preserve counts when sleeping settled bodies for performance. Adapt to viewport size while keeping all rows, the release slot, and collection bins visible; controls must remain usable by mouse, touch, and keyboard."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 6,
+    "slug": "rocket-launch",
+    "title": "Rocket Launch 3D",
+    "zh": "火箭发射",
+    "category": "physics",
+    "summary": "A procedural launch complex with countdown choreography, ignition, ascent, and interactive camera views.",
+    "tech": [
+      "Three.js",
+      "Procedural geometry",
+      "Camera direction"
+    ],
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "featured": false,
+    "reference": "https://x.com/bridgemindai/status/2098381201547419852",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Create a single self-contained HTML file (all CSS and JS inline, CDN imports allowed) with an interactive 3D rocket launch scene built with Three.js.\n\nThe scene is a coastal rocket launch complex sitting on a wide gray concrete pad at the edge of the ocean. At the center stands a tall white multi-stage rocket in vertical position, with a black interstage band, a pointed fairing, and small engine nozzles at the base. Next to it, a lattice-style service tower slightly taller than the rocket, built from dark steel truss segments, with an umbilical arm reaching toward the rocket's upper stage. Around the pad scatter several white spherical and cylindrical fuel storage tanks, two or three small low support buildings, and a few tall thin lightning masts at the corners of the complex.\n\nBehind the pad the ocean stretches to the horizon with gently animated waves and subtle specular highlights. The sky has soft drifting clouds and supports a full day/night cycle: warm orange-pink gradients at dawn and dusk, a bright blue noon, and a dark night sky filled with stars and a moon. Directional sunlight casts soft shadows that move with the time of day.\n\nAdd a UI overlay panel in the bottom-left corner containing two controls: a prominent orange \"Launch\" button and a \"Time of Day\" slider. Moving the slider smoothly shifts the sun position, sky color, ambient light intensity, and shadow direction. Clicking Launch starts a short on-screen countdown, then ignition: a bright orange-yellow engine flame, billowing gray-white smoke particles spreading outward from the pad, a low rumble with camera shake, and the rocket slowly lifting off, accelerating upward with a long exhaust trail until it leaves the frame.\n\nUse realistic proportions and smooth orbit camera controls so the scene can be inspected from any angle before launch. Keep everything performant at 60fps. No external assets — generate all geometry procedurally."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Create one self-contained HTML file with inline CSS and JavaScript, using Three.js with CDN imports allowed. Build an interactive 3D rocket launch complex entirely from procedural geometry and materials; use no external assets. Target 60 FPS.\n\nPlace a realistically proportioned white multistage rocket with black interstage bands on a concrete coastal pad. Model engine bells, panel seams, access hatches, launch clamps, and soot around the flame trench. Add a steel lattice service tower with platforms, stairs, and an articulated umbilical arm; four lightning masts; six spherical or cylindrical fuel tanks; pipes; service roads; and small support buildings. The ocean stretches to the horizon, with visibly moving waves, transparent turquoise crests, deeper cobalt troughs, and changing sun reflections.\n\nThe bottom-left panel contains a prominent orange Launch button and a Time of Day slider. Launch starts a visible ten-second countdown. Retract the umbilical, release clamps at liftoff, ignite a bright white-hot engine core with orange turbulent edges, and push rolling smoke sideways through the flame trench. The rocket initially rises slowly, accelerates, and leaves an expanding exhaust trail before departing the frame. Use layered smoke particles, heat shimmer, restrained ignition shake, and exhaust illumination on nearby structures. Show countdown, altitude, and ascent state from the actual sequence. Include Reset for a repeatable launch.\n\nThe time slider continuously updates sun direction, sky gradients, shadows, ambient light, stars, and facility lamps: peach dawn, clear blue noon, saturated orange dusk, and navy night. Keep nighttime geometry readable under practical lights.\n\nOffer damped orbit controls before launch and three named camera presets: Pad, a low 35mm view; Aerial, a 28mm overview; and Tracking, a 70mm ascent follow shot. Transition smoothly without crossing geometry. Keep the main launch composition active by default, with the tower, rocket, ocean, and expanding plume simultaneously legible at ignition."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes an earlier self-contained interactive Rocket Launch source variant.",
+    "apps": [
+      {
+        "label": "Run Rocket Launch",
+        "path": "source/rocket-launch/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 7,
+    "slug": "roman-colosseum",
+    "title": "Roman Colosseum",
+    "zh": "古罗马斗兽场",
+    "category": "worlds",
+    "summary": "A playable arena scene built around procedural architecture, gladiator motion, and cinematic presentation.",
+    "tech": [
+      "Three.js",
+      "Procedural architecture",
+      "Game scene"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/MarioNawfal/status/2088721136787861741?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Build a 3D Roman Colosseum gladiator arena game as a single self-contained HTML file using Three.js loaded from a CDN, with all CSS and JavaScript inline. It must run directly in the browser with no build step and be fully playable end to end.\n\nThe scene is a massive elliptical stone amphitheater under bright daylight with a soft, hazy pale-blue sky. The Colosseum is built from warm gray and tan stone, with multiple tiers of arched openings and stepped seating rising in an oval ring around the arena. The arena floor is an oval of light sand. Around the upper rim, place a ring of tall poles flying colored banner flags — red, blue, orange, and purple — that wave gently. Fill the stands with a dense crowd of small colored spectator figures. Scatter props around the arena floor edges: broken columns, weapon racks, and debris.\n\nThe player controls a gladiator on the sand from a smooth third-person follow camera with mouse orbit. Combat moves: light sword slash, heavy sword slash, dash, and parry. Parrying an enemy attack at the right moment staggers the opponent. AI gladiators spawn in the arena, circle the player, approach across real distance, and attack with visible wind-ups. Weapon contact produces a bright flash, recoil, and hit reactions. Both player and enemies have health and stamina; dashing and heavy attacks drain stamina. Defeating all enemies in a wave advances to the next round.\n\nThe HUD shows health and stamina bars, a round and wave indicator, control hints such as \"DASH + PARRY\", and a combat log line narrating each exchange with short flavor text, like an agile fighter crossing distance or a bright weapon contact and recoil. When a round ends, show a score or victory banner.\n\nUse directional daylight with soft shadows. Keep it performant and responsive."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Build a fully playable 3D Roman Colosseum gladiator game as one self-contained HTML file using Three.js from a CDN, with inline CSS/JavaScript and no build step.\n\nCreate a massive elliptical amphitheater with three tiers of stone arches, radial stairways, individual stepped seating, and a sandy oval arena. Use warm travertine, cool recessed shadows, and vivid red, blue, orange, and purple banners. Fill the stands with at least 12000 instanced spectator figures arranged in seats, with staggered waving and cheering motions. Flags flutter continuously. Add broken columns, weapon racks, and scattered debris outside the main fighting area; all solid arena obstacles need collision.\n\nControl a visibly modeled gladiator using WASD, mouse orbit, left-click light slash, right-click heavy slash, Space dash, and Shift parry. Animate weight shifts, footsteps, shield positioning, sword arcs, and recovery. Use health and regenerating stamina for the player and each opponent. Attacks have distinct wind-up, active, and recovery phases; sword contact must depend on range and attack timing. A correctly timed parry staggers the attacker and opens a punish window. Prevent hits through obstacles and attacks from across the arena.\n\nRun three winnable rounds with one, two, and three opponents. Enemies circle, close actual distance, manage stamina, telegraph attacks, and react to damage. Impacts produce metal sparks, a short bright contact flash, recoil, and sand dust. Defeated opponents remain grounded. Show health/stamina bars, round, score, control hints, and one concise combat-log line describing the latest exchange. Include explicit victory, defeat, and restart states.\n\nUse a damped 60-degree third-person follow camera with collision avoidance and brief restrained hit shake. Add overview and arena-side spectator presets outside active combat. Default to bright hazy daylight; offer Sunset and Torchlit Night with matching shadows and practical lights. Keep combat silhouettes readable in every mode and animate idle breathing even before the first exchange."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 8,
+    "slug": "pelican-cyclist-svg",
+    "title": "Pelican Cyclist · SVG",
+    "zh": "鹈鹕骑自行车",
+    "category": "interactive",
+    "summary": "A collection of expressive vector variations of a pelican riding a bicycle, from classic to Y2K and rap styling.",
+    "tech": [
+      "SVG",
+      "Vector illustration",
+      "CSS animation"
+    ],
+    "category_label": "Interactive Experiments",
+    "category_zh": "互动实验",
+    "featured": false,
+    "reference": "https://x.com/HarshithLucky3/status/2100524699780600136?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Create code for an SVG of a pelican riding a bicycle as nicely as you can"
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Create the complete code for a standalone SVG of a pelican riding a bicycle. Use only SVG elements, vector paths, gradients, clipping, and embedded CSS or native SVG animation; no raster images, external assets, canvas, or HTML wrapper. Give the SVG a responsive viewBox and an accessible title and description.\n\nShow the whole bicycle and bird in a clean side view, with enough space around the long beak and both wheels. The pelican must be anatomically recognizable: cream-white plumage, layered charcoal flight feathers, a long amber bill, a distinct expandable throat pouch, a small alert eye, and broad orange webbed feet. Seat its body above the saddle, reach both feet to opposite pedals, and curl one wing toward the handlebar with a believable balance pose.\n\nBuild a teal diamond-frame bicycle with two equal circular wheels, slim black tires, silver spokes, hubs, fork, saddle, pedals, crank, and a visible chain connecting crank and rear sprocket. Keep the frame geometry coherent, with pedals below the saddle and the fork attached to the front wheel. Use warm coral accents and a pale sky-blue background with a simple ground line and soft elliptical contact shadows.\n\nAnimate a seamless riding loop: wheels and spokes rotate consistently with forward travel, the crank turns, webbed feet remain attached to their respective pedals, and jointed legs follow the pedal cycle. Add a small alternating body bob, a subtle pouch sway, an occasional blink, and sparse roadside flowers sliding past. Keep the pelican centered while the scenery moves.\n\nUse crisp outlines with controlled line weights, restrained gradients on the bill and metal, and overlapping feather shapes that remain readable at small size. Eliminate detached feet, intersecting wheel geometry, accidental gaps, and motion jumps. Provide a still, fully composed pose under prefers-reduced-motion. Return only the SVG code."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo-01.mp4",
+        "label": "Presentation 1"
+      },
+      {
+        "path": "demo-02.mp4",
+        "label": "Presentation 2"
+      },
+      {
+        "path": "demo-03.mp4",
+        "label": "Presentation 3"
+      },
+      {
+        "path": "demo-04.mp4",
+        "label": "Presentation 4"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 9,
+    "slug": "pos-card-swipe",
+    "title": "POS Card Swipe",
+    "zh": "POS 机刷卡",
+    "category": "interactive",
+    "summary": "A minimal isometric payment terminal and a looping bank-card swipe rendered entirely with vector geometry.",
+    "tech": [
+      "SVG",
+      "Isometric design",
+      "Loop animation"
+    ],
+    "category_label": "Interactive Experiments",
+    "category_zh": "互动实验",
+    "featured": false,
+    "reference": "https://x.com/HarshithLucky3/status/2072634855855448509?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Generate the code of a continuous SVG animation of a minimal isometric card swiping machine and a sleek bank card, where the card smoothly slides down and across the side reader slot with a glowing smart chip, triggering a white paper receipt with dashed cut lines and tiny text blocks to unroll from the top printer slot before a bright success checkmark stamp pops onto the paper. The design should feature a clean flat UI style using slate gray, mint green, and subtle white highlights, with smooth CSS easing for all moving elements"
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "Generate the complete code for a standalone, continuously looping SVG animation of a minimal isometric card-swiping machine and a sleek bank card. Use SVG vector geometry and embedded CSS animations with smooth easing; no raster images or external assets. Preserve a clean flat UI style using slate gray, mint green, and subtle white highlights.\n\nDraw a coherent 30-degree isometric payment terminal with distinct top, front, and side faces, rounded corners, a recessed dark screen, a small keypad, a narrow side reader slot, and a printer opening on top. Use slate #334155, dark slate #17212F, mint #7CFFB2, and warm white #F8FAFC. Separate surfaces through value and crisp edges rather than heavy shadows. Place the terminal over a restrained elliptical ground shadow.\n\nThe card starts above and beside the side reader, displaying a mint edge, a glowing smart chip, four tiny masked-number groups, and a simple embossed stripe. It slides smoothly downward into alignment and then across the reader slot. Use clipping and layer order so the inserted section passes behind the reader lip instead of visibly floating over the housing. The chip glow intensifies only during the swipe.\n\nAfter the swipe completes, illuminate the screen with a mint confirmation pulse. A white receipt unrolls upward from the printer opening, revealing dashed cut lines and tiny aligned text blocks progressively; keep the paper behind the slot edge until it emerges. A bright mint success checkmark stamp then pops onto the paper with one short squash-and-settle motion. Hold the completed transaction briefly, remove the card, retract the receipt, and return to the initial state without a visible jump.\n\nUse a clearly staged eight-second loop with no overlapping transaction phases. Maintain consistent isometric alignment throughout, ensure the checkmark remains readable at small size, and include an accessible title plus a reduced-motion static success state. Return only the SVG code."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 10,
+    "slug": "pelican-cyclist-3d",
+    "title": "Pelican Cyclist · 3D",
+    "zh": "3D鹈鹕骑自行车",
+    "category": "worlds",
+    "summary": "Four three-dimensional takes on the familiar rider, exploring materials, camera motion, and playful secondary movement.",
+    "tech": [
+      "3D animation",
+      "Character motion",
+      "Look development"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/gabrielchua/status/2096403701862961161?s=20",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo-01.mp4",
+        "label": "Presentation 1"
+      },
+      {
+        "path": "demo-02.mp4",
+        "label": "Presentation 2"
+      },
+      {
+        "path": "demo-03.mp4",
+        "label": "Presentation 3"
+      },
+      {
+        "path": "demo-04.mp4",
+        "label": "Presentation 4"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 11,
+    "slug": "robot-arm-stacking",
+    "title": "Robot Arm Stacking",
+    "zh": "Robot arm stacking objects",
+    "category": "physics",
+    "summary": "A robotic manipulator stacks objects with an emphasis on contact, motion timing, and mechanical readability.",
+    "tech": [
+      "3D motion",
+      "Mechanical animation",
+      "Object interaction"
+    ],
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "featured": false,
+    "reference": "https://x.com/diegocabezas01/status/2096205956095127869",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 12,
+    "slug": "drowned-city",
+    "title": "Drowned City",
+    "zh": "Drowned city of neo-gothic towers",
+    "category": "worlds",
+    "summary": "A neo-gothic city reclaimed by water, presented as an atmospheric architectural and camera-motion study.",
+    "tech": [
+      "3D environment",
+      "Water",
+      "Cinematic camera"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/emollick/status/2094983856424358023?s=20",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 13,
+    "slug": "minecraft-self-portrait",
+    "title": "Minecraft Self-Portrait",
+    "zh": "Minecraft 搭自画像",
+    "category": "interactive",
+    "summary": "A block-built self-portrait exploring how a simple voxel vocabulary can suggest a recognizable character.",
+    "tech": [
+      "Voxel art",
+      "Character design",
+      "Minecraft"
+    ],
+    "category_label": "Interactive Experiments",
+    "category_zh": "互动实验",
+    "featured": false,
+    "reference": "https://x.com/siyabuilt/status/2104924603126603893?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "Build what you think you look like"
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 14,
+    "slug": "cyclist-comparison",
+    "title": "Cyclist Motion Study",
+    "zh": "骑自行车（三模型横测）",
+    "category": "worlds",
+    "summary": "An editorial motion study focused on cycling mechanics, framing, and the readability of a repeating action.",
+    "tech": [
+      "Motion design",
+      "Editorial layout",
+      "Character animation"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/AI_Screening/status/2104612559651569851?s=20",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 15,
+    "slug": "pixel-cheetah",
+    "title": "Pixel Cheetah",
+    "zh": "像素画奔跑猎豹",
+    "category": "worlds",
+    "summary": "A 640 × 360 pixel-art sprint with attention to gait, silhouette, and the feeling of speed.",
+    "tech": [
+      "Pixel art",
+      "Run cycle",
+      "Sprite animation"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/HarshithLucky3/status/2103120423005425972?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "640×360 pixel art of cheetah running"
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 16,
+    "slug": "emoji-twenty-questions",
+    "title": "20 Questions · Emoji",
+    "zh": "20 问猜 emoji",
+    "category": "interactive",
+    "summary": "A playful guessing-game experiment built around twenty questions and emoji answers.",
+    "tech": [
+      "Interactive narrative",
+      "Game logic",
+      "Emoji"
+    ],
+    "category_label": "Interactive Experiments",
+    "category_zh": "互动实验",
+    "featured": false,
+    "reference": "https://x.com/edwinarbus/status/2104643996123603407?s=20",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 17,
+    "slug": "stickman-destroy",
+    "title": "Stickman Website Wreck",
+    "zh": "火柴人拆网站",
+    "category": "interactive",
+    "summary": "An interactive stickman demolition scene that turns a familiar webpage into a playful destruction sandbox.",
+    "tech": [
+      "HTML5 Canvas",
+      "Interactive physics",
+      "Playful UI"
+    ],
+    "featured": true,
+    "category_label": "Interactive Experiments",
+    "category_zh": "互动实验",
+    "reference": "https://x.com/HugoDuprez/status/2104579137575018827?s=20",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes the browser game source; no build step is required.",
+    "apps": [
+      {
+        "label": "Play Stickman Website Wreck",
+        "path": "source/stickman-destroy/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 18,
+    "slug": "ship-in-a-bottle",
+    "title": "Ship in a Bottle",
+    "zh": "瓶中船",
+    "category": "interactive",
+    "summary": "Two browser-based interpretations of a miniature sea, with animated waves, a sailing ship, weather, and tactile camera controls.",
+    "tech": [
+      "Three.js",
+      "Procedural water",
+      "Interactive scene"
+    ],
+    "featured": true,
+    "category_label": "Interactive Experiments",
+    "category_zh": "互动实验",
+    "reference": "https://x.com/vib3coded/status/2110136719827747181",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "做一个可交互的 voxel 风 ship-in-a-bottle 3D 网页场景（单个自包含 HTML + Three.js）：玻璃瓶横放在木桌支架上（KESTREL·1742 铭牌、软木塞+火漆印），瓶内有体素海洋（波浪实时起伏）、三桅帆船（随浪浮沉/横摇）、红白条纹灯塔（旋转光束+发光灯室）、云、鲸鱼、棕榈小岛、海底珊瑚；右侧控制面板：天气预设（Tropical Noon / Golden Sunset / Bioluminescent / Maelstrom Storm）、交互物理（Rogue Wave / Fire Broadside / Shake Bottle / Glass Shell 开关）、流体参数滑杆（浪幅/风速/瓶体俯仰）、相机预设（全瓶/帆船特写/海底珊瑚/灯塔）。"
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo-01.mp4",
+        "label": "Presentation 1"
+      },
+      {
+        "path": "demo-02.mp4",
+        "label": "Presentation 2"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes two browser implementations: S.V. Kestrel and The Bottled Sea (TypeScript source plus production build).",
+    "apps": [
+      {
+        "label": "Run S.V. Kestrel",
+        "path": "source/sv-kestrel/index.html"
+      },
+      {
+        "label": "Run The Bottled Sea",
+        "path": "source/bottled-sea/dist/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 19,
+    "slug": "pelican-bench-variant-1",
+    "title": "Pelican Bench · Variant I",
+    "zh": "鹈鹕骑自行车变体 1",
+    "category": "worlds",
+    "summary": "A side-by-side motion variation exploring a different visual treatment for the pelican cyclist.",
+    "tech": [
+      "Motion study",
+      "Character design",
+      "Comparison edit"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/dummerspast39/status/2111577334436319355",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 20,
+    "slug": "pelican-rider-variant-2",
+    "title": "Pelican Rider · Variant II",
+    "zh": "鹈鹕骑自行车变体 2",
+    "category": "worlds",
+    "summary": "A second rider variation with alternate geometry, walk-cycle treatment, and presentation.",
+    "tech": [
+      "Motion study",
+      "Geometry",
+      "Character animation"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/dummerspast39/status/2111519245733654775",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 21,
+    "slug": "bowser-motion-study",
+    "title": "Bowser Motion Study",
+    "zh": "马里奥 Bowser",
+    "category": "worlds",
+    "summary": "A character-focused animation study featuring Bowser-inspired form, staging, and movement.",
+    "tech": [
+      "Character animation",
+      "3D styling",
+      "Motion design"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/luckeyfaraday/status/2111522732668035503",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": false,
+    "source_scope": null,
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 22,
+    "slug": "roadster-rush",
+    "title": "Roadster",
+    "zh": "Roadster 赛车",
+    "category": "worlds",
+    "summary": "A driving-game project family spanning an archival comparison cut and a warm low-poly browser recreation.",
+    "tech": [
+      "Three.js",
+      "Driving controls",
+      "Low-poly scene"
+    ],
+    "featured": true,
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "reference": "https://x.com/atomic_chat_hq/status/2111474429410566422",
+    "prompts": [],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes the separate warm low-poly Roadster Rush browser recreation. Its scene differs from the archived comparison clip.",
+    "apps": [
+      {
+        "label": "Play Roadster Rush",
+        "path": "source/roadster-rush/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 23,
+    "slug": "fjord-seaplane",
+    "title": "Fjord Seaplane",
+    "zh": "峡湾水上飞机",
+    "category": "worlds",
+    "summary": "A cinematic flight over reflective fjord water, with procedural mountains, waterfalls, spray, and a carefully directed camera.",
+    "tech": [
+      "Three.js",
+      "Environment art",
+      "Camera choreography"
+    ],
+    "featured": true,
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "reference": "https://x.com/EnvolDev/status/2111175666398048620?s=20",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "【复刻 · 3D场景】复刻 X @EnvolDev 四模型横测原型（水上飞机飞越峡湾）\n\nBuild a complete, spectacular 3D cinematic scene that runs in the browser as a single self-contained HTML file. Use Three.js from a CDN for rendering; everything else must be inline — no external art assets, no downloaded textures or models. All geometry and textures must be procedurally generated in code.\n\nSCENE — \"Fjord Seaplane\" (a Nordic fjord / mountain lake in bright daylight):\n- A wide turquoise mountain lake with animated water: rippling waves, sun glints, and reflections of the mountains on the surface.\n- Steep rocky mountains rising on both sides of the water, with snow-capped jagged peaks in the distance. Layered ridges fading into atmospheric haze.\n- At least two tall waterfalls cascading down the cliffs into the lake, with white falling water and foam/mist at the base.\n- Dense pine forests (instanced conifers) covering the lower slopes and shorelines.\n- A small lakeside village: a handful of wooden cabins with warm windows near a dock on the shore.\n- The hero: a red-and-white SEAPLANE (high-wing monoplane with two floats/pontoons, radial engine, spinning propeller).\n\nAUTOPILOT CINEMATIC — exactly this shared timeline, driven by one master clock `t` in seconds (used for synced recording across models):\n- t = 0.0–3.0: the seaplane floats on the water near the village dock, gently bobbing; propeller spins up.\n- t = 3.0–8.0: it taxis and accelerates across the lake, trailing a foamy wake and spray.\n- t = 8.0–9.5: liftoff — nose pitches up, the plane leaves the water.\n- t = 9.5–15.0: low pass over the water toward the biggest waterfall; camera tracks alongside/behind the plane.\n- t = 15.0–19.0: a gentle banked turn over the fjord with the village below.\n- t = 19.0–22.0: climb out toward the snowy peaks, then seamlessly loop back to t = 0.\n\nCAMERA: cinematic chase camera — smooth, medium-to-wide shots (no extreme close-ups), always keeping the plane and the landscape in frame. Director-style framing wins over face-hugging.\n\nTECH REQUIREMENTS:\n- Single HTML file, Three.js via CDN (importmap or UMD both fine).\n- URL param `?auto=1` must start the autopilot cinematic immediately on load (no click needed).\n- Bright, saturated, beautiful colors; soft shadows; atmospheric haze. Target a stable 60fps on a laptop GPU.\n- The page fills the whole window; assume an ultrawide ~2.17:1 viewport (e.g. 1776×820).\n- No external images/fonts/models; procedural everything.\n- Output ONLY the complete HTML file in one code block.\n"
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "# K3 Advanced Prompt — fjord-seaplane（峡湾水上飞机 · 逐帧复刻 X 爆款横测原型）\n\nBuild a **breathtaking, recording-grade 3D cinematic scene** in a single self-contained HTML file. Three.js may load from a CDN; every other asset — geometry, textures, sprites, UI — must be **procedurally generated in code**. No external images, fonts, or model files.\n\nReference: the viral X post @EnvolDev (2026-10-16, 165K views) — four AI models each built \"a seaplane flying over a Nordic fjord with waterfalls\". We recreate that scene at the highest fidelity and the most cinematic camera work, at **golden-hour dusk** (the most striking of the four reference interpretations).\n\n## 1. Landscape (the fjord)\n- A long, wide **turquoise fjord** winding between steep mountain walls; layered procedural ridges (simplex-style noise) with **snow-capped jagged peaks** in the distance, fading into warm atmospheric haze.\n- **Golden-hour sky**: low warm sun, gradient sky (amber → rose → deep blue), a visible sun disc with glow, scattered lit clouds.\n- **Animated water**: rippled normal perturbation, sun glitter path on the surface, **planar reflections of mountains/sky** (or convincing fake), shore foam lines, and a glassy dusk tint.\n- **Two+ waterfalls** plunging down the cliffs: scrolling white water sheets, **foam bursts and drifting mist** at the base.\n- **Dense pine forests**: thousands of instanced conifers (2–3 variants, color jitter) carpeting the lower slopes and shoreline.\n- **Lakeside village**: 8–12 wooden cabins with warm glowing windows, a small church with a steeple, wooden docks with moored rowboats, thin chimney smoke.\n- Floating mist banks low over the water in the distance; birds (tiny flocks) crossing the sky.\n\n## 2. The seaplane (hero asset — build it with love)\n- High-wing monoplane, **red & white livery** with stripes; two aluminum floats with struts; radial engine cowling; **spinning propeller with motion-blur disc**; navigation lights; visible cockpit glass; a pilot silhouette.\n- Believable flight physics feel: bobbing on waves, water spray at the floats while taxiing, pitch-up rotation at liftoff, **banked turns with coordinated roll**, subtle turbulence wobble in cruise, wake foam trail that fades.\n\n## 3. Autopilot cinematic — shared timeline (master clock `t`, seconds; MUST match for synced recording)\n- t = 0.0–3.0: plane floats near the village dock, bobbing; propeller spins up; warm windows glow; camera holds a **postcard-wide establishing shot** (first frame = poster).\n- t = 3.0–8.0: taxi & acceleration across the glassy water, spray wake building; camera low and tracking from the side.\n- t = 8.0–9.5: **liftoff** — nose up, floats leave the water, droplets shed.\n- t = 9.5–15.0: **low pass** over the water toward the big waterfall; camera chases from behind-quarter; waterfall mist drifts; sun glitter path leads the eye.\n- t = 15.0–19.0: gentle **banked turn** over the fjord, village and docks below; camera wide, mountains layered behind.\n- t = 19.0–22.0: **climb out** toward the glowing snowy peaks; settle into the postcard composition; **seamless loop** back to t = 0.\n- Director rule: medium-to-wide shots only, continuous smooth motion (no hard cuts, no speed jumps at beats — crossfade the camera rig parameters).\n\n## 4. Tech requirements\n- Single HTML file; Three.js via CDN. URL param `?auto=1` starts the cinematic immediately (no click). Also support `?t0=N` to start at second N, and `?freeze=N` to render exactly one frame at t=N (for QC frame diffing).\n- Bright, saturated, high-contrast golden-hour grade; soft shadows (PCF), fog/haze, tone-mapped HDR feel (ACES). **Stable 60fps** on a laptop GPU; use instancing for trees/rocks, cap shadow map size, no per-frame allocations.\n- Fill the whole window; assume an ultrawide ~2.17:1 viewport (1776×820). Zero console errors.\n- Iterate at least **5 rounds of self-refinement**: render, screenshot, compare against the reference frames, fix composition/color/framing, repeat.\n- Output ONLY the complete HTML file in one code block.\n"
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes the final single-file browser scene used for the seaplane project.",
+    "apps": [
+      {
+        "label": "Run Fjord Seaplane",
+        "path": "source/fjord-seaplane/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 24,
+    "slug": "whale-breach",
+    "title": "Whale Breach",
+    "zh": "鲸鱼跃出水面",
+    "category": "physics",
+    "summary": "A side-view ocean study combining a sculpted whale, layered waves, airborne droplets, and a full breach arc.",
+    "tech": [
+      "Three.js",
+      "Blender",
+      "Fluid-inspired motion"
+    ],
+    "featured": true,
+    "category_label": "Physics & Simulation",
+    "category_zh": "物理模拟",
+    "reference": "https://www.xiaohongshu.com/explore/6ad758f8000000002701f44f?xsec_token=CBCgH2-WLW8AlUubX76kZ5gz2KKEoQnQZ5jXM5s9iOicc=&xsec_source=app_share",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "【还原度 · threejs】\n（Base 原 Prompt 为空，以下按用户指定主题补写，不冒充原帖 Prompt。）\n\nCreate ONE self-contained index.html for a cinematic Three.js scene: a humpback whale breaching out of the ocean. This is one quadrant of a 4-way coding-model comparison. Work only in your assigned output directory. Do not run a browser, do not install packages, and do not create a framework project. Write the actual index.html, not a tutorial or a markdown response.\n\nVISUAL GOAL\nA clearly recognizable humpback whale, not a generic fish or torpedo: robust tapered body, small dorsal fin, long pectoral flippers, horizontal tail flukes, dark dorsal skin and a lighter throat/belly. Include a readable eye, mouth line and jaw/ventral detail. Use rich bright ocean color, real perspective, daylight, sky and atmospheric depth. The breach and water are the hero, not UI. No title, logo, model name, controls or explanatory text in the scene. No flat vector whale, no static photograph used as the scene, no aquarium glass.\n\nMANDATORY SYNCHRONIZED 22-SECOND TIMELINE\n0–3s: ocean establishing shot; whale back/roil is already visible at the surface, so the first frame is composed and meaningful.\n3–6s: whale accelerates upward and its head/body break the surface, with a growing bow-wave and spray.\n6–10s: full airborne breach; at 9s the whole whale, both pectoral fins and flukes must fit comfortably inside the frame.\n10–13s: graceful twisting arc and downward turn; maintain the whale as the visual anchor.\n13–16s: high-energy re-entry and large layered splash crown with droplets and expanding foam.\n16–22s: settling foam, concentric ripples, whale briefly visible below/behind the surface, then a clean ocean vista suitable for looping.\nKeep these action beats at these times exactly. Use continuous medium-wide lateral tracking with a gentle orbit, not random cuts or an extreme close-up. The whale must never disappear offscreen during the airborne phase.\n\nWATER AND MOTION\nAnimate ocean normals/vertices, reflected sky/sun glints, foam patches, spray droplets and expanding rings. The whale must have a smooth ascending/arcing trajectory with a banking twist and secondary fin/fluke motion. Splash particles should follow ballistic arcs and be emitted in coherent waves tied to surface breaking and re-entry, not a constant snowstorm. Make the body/water contrast readable.\n\nTECHNICAL CONTRACT\n- Single HTML file with inline CSS/JavaScript; Three.js r160 from https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js is allowed. No other dependencies or remote models are needed.\n- Full-bleed 1776×820 landscape composition, responsive to other sizes, no scrolling.\n- Use actual animated 3D geometry and water shading. You may use procedural textures and particle sprites.\n- Expose window.__step(t): render the exact deterministic state at time t seconds (0 <= t <= 22), without advancing an independent simulation. All whale motion, camera, ocean and particles must be reproducible from t.\n- Set window.__ready = true only after a successful first render. Support ?freeze=9 to show a static frame and ?auto=1 to play the 22s timeline in real time. Normal load may autoplay.\n- Keep geometry and particle counts moderate enough for 30fps capture with hardware WebGL. No external API keys, no audio, no build step.\n- Avoid runtime errors and NaNs. Test your own code logically before finishing.\n\nReturn by writing index.html in the assigned directory. Keep the implementation focused on the whale, the breach and the water."
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "【还原度 · threejs】\n（Base 原 Prompt 为空，以下为 K3 高级补写版。）\n\nBuild the premium K3 candidate for a 4-way AI coding comparison: a spectacular, physically convincing humpback whale breaching out of a luminous ocean. Work in the project working directory. Read prompt_basic.txt and obey every technical and timeline requirement in it. Write the finished single-file scene to runs/k3/index.html. Do not only print code in the response.\n\nTwo visual references are attached: ref/whale-anatomy.jpg for humpback anatomy/body proportions and ref/whale-splash.jpg for the relationship between the whale, airborne water and scale. They are visual references only. Do not display the photographs as a flat background, do not reuse them in any other model's run, and do not require them at runtime. Study them before modeling.\n\nART DIRECTION\nA bright cinematic ocean at late afternoon: luminous turquoise-to-deep-blue water, warm side light, a subtle horizon, distant atmospheric haze, detailed but restrained sky. Realistic materials and layered depth rather than a toy-like flat scene. Aim for a breathtaking natural spectacle and a poster-worthy first frame. Maintain excellent dark-whale/light-water separation without crushing the whale into a silhouette.\n\nANATOMY AND SECONDARY DETAIL\nInvest in a convincing humpback silhouette: custom smoothly varying body cross-sections, thick torso tapering into a narrow peduncle, broad horizontal flukes, a small hooked dorsal fin and notably long pectoral flippers with pale undersides. Include lower jaw/throat volume, a subtle curved mouth, a small correctly placed eye, ventral pleats and restrained tubercle/barnacle detail. Avoid a stack of obvious spheres or a rigid cigar shape. Use smooth shading, carefully oriented fins and coherent left/right anatomy. Add controlled body flex and fluke/pectoral motion during the breach, with banking/angular inertia rather than rigid translation.\n\nWATER AND BREACH\nUse a genuine animated ocean shader or equivalent nuanced shading: multi-scale moving ripples, sky-color Fresnel reflection, glancing-angle sun glints, subtle foam streaks and depth-dependent color. The whale should interact visually with the water through a bow wave, sheets of spray, ballistic droplets of varied size, a layered splash crown, whitewater, expanding rings and a fading turbulent footprint. A few larger stretched droplets near the body plus many fine droplets will give scale. The big re-entry splash is the climax; do not let the whale look weightless or the water look like confetti.\n\nCAMERA AND EXACT TIMING\nUse the common 22s timeline from prompt_basic.txt: surface anticipation 0–3, rise 3–6, full breach 6–10, twisting descent 10–13, re-entry/splash 13–16, settling ripples 16–22. First frame already shows an elegant whale-back/roil composition. At 9s show the entire animal in a medium-wide hero composition with comfortable margins and visible ocean below. Camera motion must be continuous and deliberate, following the whale while preserving the horizon and spatial orientation. Do not crop the whale at the apex, do not make sudden cuts, and do not spend several seconds on empty water.\n\nFIVE SELF-REFINEMENT PASSES BEFORE FINISHING\nAfter the initial implementation, inspect and improve the actual file in five focused passes, without starting a new generation session:\n1. Anatomy: humpback proportions, long flippers, flukes, jaw, eye and body deformation.\n2. Water: layered shader detail, spray variation, whitewater and contact with the whale.\n3. Physics: smooth arc, banking, angular inertia and correctly timed splash emission.\n4. Cinematography: first-frame composition, 9s full-body hero frame, contrast, scale and continuous tracking.\n5. Robustness: deterministic __step(t), no NaNs/errors, complete scene at all timeline beats, and practical rendering cost.\n\nTECHNICAL CONTRACT\nFollow prompt_basic.txt exactly: single index.html, Three.js r160 CDN allowed, 1776×820 landscape, no UI/text/branding in the scene, no build system, no installed dependencies. window.__step(t) must deterministically render every animated property at arbitrary t; window.__ready only after a successful render; ?freeze=9 and ?auto=1 supported. The default load should play. Make the output a finished interactive/cinematic 3D scene, not a design document.\n\nPerform the five refinement passes on the file, then finish with a concise report of the file and improvements. Do not run parallel browser recordings; the parent agent will perform QC and capture serially."
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes the single-file Three.js scene and two editable Blender environment files.",
+    "apps": [
+      {
+        "label": "Run Whale Breach",
+        "path": "source/whale-breach/index.html"
+      }
+    ],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  },
+  {
+    "number": 25,
+    "slug": "fawn-deer-motion",
+    "title": "Fawn Deer Motion",
+    "zh": "小鹿",
+    "category": "worlds",
+    "summary": "A white-tailed deer study refined through model assets, gait analysis, material work, and side-view cinematography.",
+    "tech": [
+      "Blender",
+      "EEVEE",
+      "Gait refinement"
+    ],
+    "category_label": "3D Worlds & Motion",
+    "category_zh": "3D 与动作",
+    "featured": false,
+    "reference": "https://x.com/fawnunwrap/status/2112294137638666401",
+    "prompts": [
+      {
+        "label": "Basic prompt",
+        "text": "# 白尾鹿单体建模 Prompt（hyper3d Rodin）\n\n## 提交参数\n- `--mesh-mode Quad --quality 50000 --format glb`（四边形，面数开最大，1 credit）\n- 输入图：`ref/view_34.png`（3/4 侧后视角）、`ref/view_side.png`（正侧视角）\n\n## 关键声明（防止多体粘连）\n随附的参考图展示的是**同一个物体——一只鹿——的不同视角**，不是多个物体。请只生成**一只单独的鹿**模型，单根节点、单个网格，严禁把不同视角理解为多只鹿或生成多个粘连的模型。\n\n## 资产描述\n一只奔跑姿态的白尾鹿（white-tailed deer），风格化为干净光滑的写实卡通渲染质感：\n\n- **体型**：修长优雅的鹿，长颈、窄胸、长腿，身体呈流线型\n- **配色（矿物暖棕 + 奶油白分区）**：\n  - 背部与体侧：暖赭棕色（tan/ochre brown），光滑短毛\n  - 腹部、颈下、腿内侧：奶油白色\n  - 肩部与后腿上部有白色斑区块面\n  - 尾巴：白色短尾上翘（白尾鹿标志性旗状尾）\n  - 小腿下部至蹄：深棕黑色，蹄为黑色\n  - 鼻镜黑色，眼周有浅色环\n- **鹿角**：雄性分枝状鹿角，暖棕褐色，多叉（每侧 4-5 个叉尖），从头顶向后上方伸展\n- **姿态**：动态奔跑/腾跃姿态，前腿收起弯曲，后腿蹬伸，身体伸展\n- **材质**：哑光短毛质感，明暗分区清晰，不要高反光塑料感\n\n## 验收\n- 单个物体、单网格；姿态、配色分区、鹿角形态与参考图一致\n- 出现多体粘连/多只鹿即判定失败，需重新提交\n"
+      },
+      {
+        "label": "Advanced prompt",
+        "text": "以用户提供的deer_scene.blend、deer.glb、参考视频与1021-小鹿-v1工程为基础，保留模型、材质和50mm镜头，精修Kimi侧16帧步态：明确伸展、承重、蹬伸和回收，错开左右腿相位，协调重心、脊柱、颈头与尾部，加入轻微跟镜和0.18帧快门运动模糊。使用Blender原生EEVEE渲染65帧，双侧以相同源时间窗口插帧，完整动作、细节和结尾统一2×加速，输出15秒1080p60双栏视频kimi-v2.mp4。"
+      }
+    ],
+    "videos": [
+      {
+        "path": "demo.mp4",
+        "label": "Final presentation"
+      }
+    ],
+    "source_available": true,
+    "source_scope": "Includes editable Blender/GLB assets and scene-refinement utilities; no browser app is claimed.",
+    "apps": [],
+    "archive_note": "Archived comparison cuts may include reference or user-provided footage. This is a creative-coding showcase, not a controlled model evaluation."
+  }
+]
