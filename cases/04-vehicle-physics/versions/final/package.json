@@ -1,0 +1,30 @@
+{
+  "name": "monster-truck-kimi-limit-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build && node scripts/package-single.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "verify": "node scripts/verify.mjs",
+    "verify:record": "node scripts/verify-recording.mjs",
+    "verify:playback": "node scripts/verify-playback.mjs",
+    "record": "node scripts/record.mjs",
+    "compose": "node scripts/compose.mjs",
+    "compose:dual": "node scripts/compose-dual.mjs",
+    "verify:dual": "node scripts/verify-dual.mjs",
+    "compose:20": "node scripts/compose-20s.mjs",
+    "verify:20": "node scripts/verify-20s.mjs",
+    "soak": "node scripts/soak.mjs"
+  },
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "0.185.0",
+    "puppeteer-core": "25.9.0",
+    "typescript": "5.9.3",
+    "vite": "7.1.12"
+  }
+}

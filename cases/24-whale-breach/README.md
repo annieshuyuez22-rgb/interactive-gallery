@@ -8,6 +8,10 @@ A side-view ocean study combining a sculpted whale, layered waves, airborne drop
 
 **Techniques:** Three.js, Blender, Fluid-inspired motion
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

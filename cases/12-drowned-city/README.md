@@ -8,6 +8,10 @@ A neo-gothic city reclaimed by water, presented as an atmospheric architectural 
 
 **Techniques:** 3D environment, Water, Cinematic camera
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

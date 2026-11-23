@@ -8,6 +8,10 @@ Three compact physics scenes: a cannon demolishing masonry, bowling impacts, and
 
 **Techniques:** HTML5 Canvas, Collision response, Debris simulation
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

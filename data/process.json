@@ -1,0 +1,732 @@
+{
+  "4": {
+    "level": "verified-iteration",
+    "baseline": "The initial Monster Truck build already had driving, suspension and procedural vehicle damage. The archive preserves its source and QC captures, followed by a seven-iteration refinement log and a final R7 build.",
+    "improvements": [
+      {
+        "title": "Contact geometry matches the visible car",
+        "description": "Removed a uniform residual ride height and sampled local undeformed body height so the collision surface no longer hovered above the visible contact edge."
+      },
+      {
+        "title": "Camera and HUD become more readable",
+        "description": "Added a wide wreckage view, corrected slow-motion framing and removed CSS ghosting during timeline jumps. The final composition keeps the truck and five damaged cars legible."
+      },
+      {
+        "title": "One coherent damage field",
+        "description": "Side, end and roof surfaces now read the same damage field. Local creases, clearcoat and fill light make deformation visible instead of hidden between panels."
+      },
+      {
+        "title": "Physics and replay correctness",
+        "description": "Damage is driven by actual ground travel and load. Attachments inherit local damage, debris receives approximate vehicle/tire collisions, and duplicate timeline events no longer contaminate deterministic replay."
+      },
+      {
+        "title": "Resource cleanup across resets",
+        "description": "Replacement vehicles and debris explicitly release GPU resources. Geometry and texture counts remain stable in the final reset test instead of growing per cycle."
+      },
+      {
+        "title": "R7 tire contact and flattening",
+        "description": "Support sampling increased from 5 to 21 points. Load-dependent tire flattening, sidewall bulging and deformed-geometry contact reports improved the final crush pose."
+      }
+    ],
+    "limitation": "The simulation mixes vehicle dynamics, suspension support and procedural plastic deformation; it is not a full soft-body or node-beam solver. The recorded soak is about 30 seconds and does not prove long-term stability on every device. Not every intermediate source snapshot was retained.",
+    "versions": [
+      {
+        "label": "Initial source",
+        "path": "versions/initial/src/main.ts",
+        "note": "Initial TypeScript implementation"
+      },
+      {
+        "label": "Final source",
+        "path": "versions/final/src/main.ts",
+        "note": "Final R7 TypeScript implementation"
+      },
+      {
+        "label": "Iteration log",
+        "path": "process-evidence/iterations.json",
+        "note": "Seven rounds of implementation notes"
+      }
+    ],
+    "comparisons": [
+      {
+        "before_label": "Initial contact",
+        "before": "process-evidence/monster-initial-contact.png",
+        "after_label": "R7 contact",
+        "after": "process-evidence/monster-final-contact.png",
+        "caption": "The final pass improves ground contact, body alignment and the readability of the crush."
+      },
+      {
+        "before_label": "Initial roof",
+        "before": "process-evidence/monster-initial-roof.png",
+        "after_label": "R7 roof",
+        "after": "process-evidence/monster-final-roof.png",
+        "caption": "Shared damage fields and additional geometric refinement make roof deformation more coherent."
+      }
+    ],
+    "metrics": [
+      "21 support samples per tire (up from 5)",
+      "Geometry count stable at 499 and textures at 8 across the final 30.2-second reset soak",
+      "No browser errors in the final soak report"
+    ],
+    "evidence": [
+      {
+        "label": "Final soak report",
+        "path": "process-evidence/monster-soak.json"
+      }
+    ]
+  },
+  "6": {
+    "level": "implementation-comparison",
+    "baseline": "A separate experimental Rocket file contains buildBasicWorld() and buildAdvancedWorld() implementations. They provide a real code-level comparison, but not a proven day-by-day version history.",
+    "improvements": [
+      {
+        "title": "Rocket geometry and materials",
+        "description": "The richer path adds PBR environment reflections, seams, hatches and a shaped engine bell rather than relying on a simple Phong rocket."
+      },
+      {
+        "title": "Ignition and heat",
+        "description": "A two-layer flame becomes a white-hot core, middle and outer plume with glow and simulated heat disturbance."
+      },
+      {
+        "title": "Smoke and exhaust",
+        "description": "A single radial smoke pool becomes two recycling particle pools, with large smoke moving sideways through the flame trench and a denser exhaust trail."
+      },
+      {
+        "title": "Launch mechanism",
+        "description": "Clamp release, umbilical-arm retraction and the flame trench turn launch into a sequence of mechanical events."
+      },
+      {
+        "title": "Camera and telemetry",
+        "description": "Pad, Aerial and Tracking presets add smooth transitions, while countdown, altitude, stage, day/night and pad lights make the sequence easier to read."
+      }
+    ],
+    "limitation": "The Basic/Rich functions are compared inside one experimental file; they are not presented as two dated releases. A separate v2 note records metal, rim-light, smoke, acceleration and pacing changes, but no v1 snapshot exists. Historical price or marketing overlays are intentionally removed from the public app.",
+    "versions": [
+      {
+        "label": "Current browser study",
+        "path": "source/rocket-launch/index.html",
+        "note": "Public presentation with price and ranking overlays removed"
+      }
+    ],
+    "comparisons": [],
+    "metrics": [
+      "3 camera presets in the richer implementation",
+      "2 recycling smoke pools plus a separate exhaust trail"
+    ],
+    "evidence": []
+  },
+  "18": {
+    "level": "verified-iteration",
+    "baseline": "S.V. Kestrel preserves R0, R1 and R2 source snapshots. The Bottled Sea preserves a separate pre-refinement source archive and the current TypeScript implementation. These are related project lines, not one artificial four-release sequence.",
+    "improvements": [
+      {
+        "title": "R0 → R1: 50 documented details",
+        "description": "The first refinement adds 50 enumerated visual and interaction details. Independent deterministic random streams preserve the original layout, while instancing and a centralized update function control the added animation cost."
+      },
+      {
+        "title": "R1 → R2: 50 more documented details",
+        "description": "A second independent random stream and bake pass add weather-reactive jellyfish, rain rings, lightning reflections, cloud shadows and other scene behavior without resetting the earlier composition."
+      },
+      {
+        "title": "R4: glass, rigging and camera behavior",
+        "description": "A later project line refines hollow glass, curve highlights, physical rigging and lighthouse beams. Manual camera selection now stops automatic rotation. Only the five actually documented R4 motion details are claimed."
+      },
+      {
+        "title": "Brighter studio and director timeline",
+        "description": "The R4 presentation introduces a brighter studio, layered blue water and a wall-clock camera timeline so software rendering does not slow the intended transitions."
+      },
+      {
+        "title": "The Bottled Sea: source-level visual refinement",
+        "description": "The preserved before/after sources show deeper water, richer storm mixing, wakes and spray, curved sails, physical rigging, ship lights, adjusted glass reflections and rebalanced day/night fill and rim lighting."
+      },
+      {
+        "title": "Non-destructive recording and deterministic fallback",
+        "description": "Output and frame paths can be redirected instead of overwriting earlier takes. A wider final hero shot and explicit fallback state improve repeatable recording."
+      }
+    ],
+    "limitation": "R4 is a separate refinement line, not a continuous R2→R4 snapshot chain. Water uses wave functions, spring damping and sampling approximations rather than a full fluid solver. The archive records successful build, interaction and playback checks; the complete verify:record regression was not rerun during packaging.",
+    "versions": [
+      {
+        "label": "S.V. Kestrel R0",
+        "path": "versions/r0/index.html",
+        "note": "Baseline snapshot"
+      },
+      {
+        "label": "S.V. Kestrel R1",
+        "path": "versions/r1/index.html",
+        "note": "First 50-detail snapshot"
+      },
+      {
+        "label": "S.V. Kestrel R2",
+        "path": "versions/r2/index.html",
+        "note": "Second 50-detail snapshot"
+      },
+      {
+        "label": "Current Bottled Sea",
+        "path": "source/bottled-sea/dist/index.html",
+        "note": "Current production implementation"
+      }
+    ],
+    "comparisons": [],
+    "metrics": [
+      "R1: 50 enumerated additions",
+      "R2: 50 further additions",
+      "9 build and interaction checks passed, including 390px touch layout",
+      "Dual-video playback passed with zero browser errors"
+    ],
+    "evidence": [
+      {
+        "label": "R1/R2 detail checklist",
+        "path": "process-evidence/kestrel-details.md"
+      },
+      {
+        "label": "Interaction verification",
+        "path": "process-evidence/bottled-sea-verification.json"
+      }
+    ]
+  },
+  "23": {
+    "level": "verified-iteration",
+    "baseline": "The earliest retained Fjord scene is a single-file Three.js seaplane study with mountains, forest, village, waterfalls and a 22-second flight path. It already contains first-pass water and exposure work, so the original one-shot is not claimed.",
+    "improvements": [
+      {
+        "title": "Water and exposure",
+        "description": "A fourth high-frequency ripple layer, sky reflection and glints were added. Exposure increased from 1.28 to 1.35 and hemisphere light from 0.95 to 1.05, with brighter distant haze."
+      },
+      {
+        "title": "Terrain and reflected color",
+        "description": "Turquoise water, mountain-streak reflections, dual glints and wave shadows were paired with ice fissures, stronger displacement, green slopes and clearer cliff contrast."
+      },
+      {
+        "title": "Float contact and camera arc",
+        "description": "Aircraft waypoints rose four meters to correct submerged floats. The camera was reorganized into aerial establishment, water-level approach, close flyby and panoramic pull-back."
+      },
+      {
+        "title": "Reflections and secondary motion",
+        "description": "Planar reflection, wind patches, waterfall-foot rings, foam and subtle camera sway connected the terrain, aircraft and water."
+      },
+      {
+        "title": "Composition and scale",
+        "description": "The middle shot moved from roughly 24m to 40–46m, then pulled back about 1.35× with a higher angle. Aircraft scale changed from 1.3 to 1.05 to reduce clipping and preserve the mountain frame."
+      },
+      {
+        "title": "Wake physics and frame-step bug",
+        "description": "A V-wake, takeoff burst, expanding foam and denser spray were added. Frame capture changed from tick(0) to a fixed 1/30 step so particle lifetimes actually advanced."
+      },
+      {
+        "title": "Two-stage clipping repair",
+        "description": "Cliff-edge vertices first received height variation; the problematic independent cliff pieces were then removed. Waterfalls now follow the same mountain displacement and trees use the makePeak height function while avoiding waterfall channels."
+      },
+      {
+        "title": "Final implementation and edit rhythm",
+        "description": "The final entry switched to a separate 25-second alpine-lake implementation. Its edit compresses the first 15 seconds to 3, expands the remaining 10 to 16, and holds the final frame for 3 seconds."
+      }
+    ],
+    "limitation": "The original one-shot and every intermediate source snapshot were not retained. Most sequence details come from the technical process log. The final alpine-lake entry is a different implementation and must not be credited with every earlier scene modification.",
+    "versions": [
+      {
+        "label": "Earlier scene source",
+        "path": "versions/early/index.html",
+        "note": "Earlier single-file implementation"
+      },
+      {
+        "label": "Final scene source",
+        "path": "versions/final/index.html",
+        "note": "Final alpine-lake implementation"
+      }
+    ],
+    "comparisons": [
+      {
+        "before_label": "Earlier scene",
+        "before": "process-evidence/fjord-before.png",
+        "after_label": "Final implementation",
+        "after": "process-evidence/fjord-final.png",
+        "caption": "The final archive capture documents the implementation switch and the cleaner, more open composition."
+      }
+    ],
+    "metrics": [
+      "22-second final comparison timeline",
+      "Fixed 1/30-second frame capture step",
+      "Final aircraft visible from the third second in the edited sequence"
+    ],
+    "evidence": []
+  },
+  "24": {
+    "level": "verified-iteration",
+    "baseline": "The retained one-shot already had custom whale cross-sections, long pectoral fins, flukes, throat pleats, procedural ocean, broken water crowns and gravity droplets. Later work split into a Blender asset branch and an 11-second lateral Three.js branch.",
+    "improvements": [
+      {
+        "title": "Breach orientation",
+        "description": "Pitch, yaw and roll keys were refined so the whale reads as a lateral breach rather than a rigid vertical pose."
+      },
+      {
+        "title": "Blender ocean and distant water",
+        "description": "Regular wave stripes were replaced by multi-scale geometric waves and stretched noise. A distant-ocean ring and matched materials reduced visible tiling and the far-water seam."
+      },
+      {
+        "title": "Procedural spray and foam",
+        "description": "Broken thin sheets, expanding foam rings and 2,450 Geometry Nodes emission points created gravity-driven droplets with irregular edges."
+      },
+      {
+        "title": "Verified asset orientation",
+        "description": "The existing procedural whale was imported into Blender as 66 meshes and 17,992 triangles. Native −Y and side views were rendered before applying Z=-90°, avoiding guessed orientation."
+      },
+      {
+        "title": "Material and water-entry corrections",
+        "description": "Micro-noise bump, revised roughness and coating improved the skin. A rectangular deep-water volume caused a dark band and was disabled while preserving geometric waves and IOR. All 244 affected water-entry frames were rerendered."
+      },
+      {
+        "title": "An 11-second lateral choreography",
+        "description": "The Three.js branch uses a fixed low camera and an 11-second action rather than a simple speed-up. The whale travels 23.4m, about 1.857 body lengths, with head contact at 5.667 seconds."
+      },
+      {
+        "title": "Surface, anatomy and spray finishing",
+        "description": "Five Gerstner-style wave groups, 19 geometric throat pleats, asymmetric swept fins, low sun, islands and birds were combined with separated droplets, mist, broken sheets and uneven foam."
+      }
+    ],
+    "limitation": "The five self-refinement rounds do not have individual source snapshots. Blender asset work and the lateral Three.js version are parallel branches, not one linear stack. The archive presents the lateral branch as its final browser scene and keeps the Blender evidence separate.",
+    "versions": [
+      {
+        "label": "One-shot source",
+        "path": "versions/one-shot/index.html",
+        "note": "Retained initial browser implementation"
+      },
+      {
+        "label": "Orientation-refined source",
+        "path": "versions/refined/index.html",
+        "note": "Pitch/yaw/roll refinement"
+      },
+      {
+        "label": "11-second lateral source",
+        "path": "versions/lateral/index.html",
+        "note": "Final lateral choreography"
+      }
+    ],
+    "comparisons": [
+      {
+        "before_label": "One-shot",
+        "before": "process-evidence/whale-before.png",
+        "after_label": "Lateral refinement",
+        "after": "process-evidence/whale-after.png",
+        "caption": "The lateral branch replaces the narrow vertical read with a clearer body silhouette, longer travel and calmer ocean composition."
+      },
+      {
+        "before_label": "Original water entry",
+        "before": "process-evidence/whale-blender-before.png",
+        "after_label": "Corrected water entry",
+        "after": "process-evidence/whale-blender-after.png",
+        "caption": "The Blender branch continues pitch beyond vertical and lowers the body for a more convincing entry."
+      }
+    ],
+    "metrics": [
+      "Lateral source: 660 frames at 60fps, 11 seconds",
+      "Blender branch: 528 rendered frames at 24fps, 22 seconds",
+      "244 water-entry frames rerendered",
+      "23.4m lateral travel; apex at 4.5s"
+    ],
+    "evidence": [
+      {
+        "label": "Lateral motion audit",
+        "path": "process-evidence/whale-motion-audit.json"
+      }
+    ]
+  },
+  "25": {
+    "level": "verified-iteration",
+    "baseline": "The starting point was an existing Blender asset: 49,714 vertices, 14 bones, 65 frames at 24fps, a 50mm camera and original animation. This project refined that asset; it did not remodel the deer or claim a new gait.",
+    "improvements": [
+      {
+        "title": "Asset integrity and portability",
+        "description": "The original mesh, rig and action were preserved without retopology. Three external textures were packed into the final Blender file and verified after reopening."
+      },
+      {
+        "title": "Orientation and camera alignment",
+        "description": "Whole-model yaw and pitch were aligned to zero while retaining the 50mm lens and original camera translation."
+      },
+      {
+        "title": "Systematic light search",
+        "description": "Thirty key-light directions and five sun angles were evaluated on frame 13. The selected (0.35, 0.4, -0.8) direction and 0.12rad sun angle brought shadow direction and length closer to the reference."
+      },
+      {
+        "title": "Short-fur material refinement",
+        "description": "Scale-220 fine noise, Bump strength 0.12 at distance 0.002, Sheen 0.06 and Specular 0.45 created a restrained short-fur surface without a plastic highlight."
+      },
+      {
+        "title": "Occlusion, shadows and anti-aliasing",
+        "description": "GTAO was enabled at distance 0.35 and quality 1.0. EEVEE samples increased from 64 to 256, shadow rays from 1 to 4 and shadow steps from 6 to 8."
+      },
+      {
+        "title": "Honest motion presentation",
+        "description": "The original 16-frame gait and camera motion were retained. Because the direct loop seam was visible, the deliverables became a 65-frame source-length cut and a 16-second motion-compensated slow-motion cut instead of a claimed seamless loop."
+      }
+    ],
+    "limitation": "The 0–1 pixel result refers only to bounding-box edges on five representative frames, not complete visual equivalence. The 16-second cut uses bidirectional motion-compensated interpolation, not 384 newly rendered frames or a newly authored 16-second gait. The public reference is not a controlled regeneration comparison.",
+    "versions": [
+      {
+        "label": "Original Blender asset",
+        "path": "source/blender/deer_scene-original.blend",
+        "note": "Original scene"
+      },
+      {
+        "label": "Refined Blender asset",
+        "path": "source/blender/1021-小鹿-v1.blend",
+        "note": "Packed textures and final refinements"
+      }
+    ],
+    "comparisons": [
+      {
+        "before_label": "Baseline · frame 13",
+        "before": "process-evidence/deer-baseline-f013.png",
+        "after_label": "Refined · frame 13",
+        "after": "process-evidence/deer-refined-f013.png",
+        "caption": "Orientation, light direction, short-fur shading and shadow settings were refined while preserving the original asset and animation."
+      }
+    ],
+    "metrics": [
+      "Bounding-box edges differ by 0–1px on five checked frames",
+      "49,714 vertices and 14 bones preserved",
+      "65 source frames at 24fps; 384-frame interpolated slow-motion cut",
+      "256 EEVEE samples, 4 shadow rays, 8 shadow steps"
+    ],
+    "evidence": [
+      {
+        "label": "Public verification summary",
+        "path": "process-evidence/deer-verification.json"
+      }
+    ]
+  },
+  "17": {
+    "level": "source-only",
+    "baseline": "Only the current Stickman source snapshot is available. The page documents implementation choices rather than inventing an iteration history.",
+    "improvements": [
+      {
+        "title": "Webpage-to-tile pipeline",
+        "description": "A page image is captured or replaced by an offline fallback, split into 16px tiles and classified against the dominant background color."
+      },
+      {
+        "title": "Destruction that inherits the source page",
+        "description": "Tiles have health, scorching, fire spread and area damage; debris uses the original webpage pixels with smoke, sparks and explosion particles."
+      },
+      {
+        "title": "Character and payload controls",
+        "description": "Running, jumping, flips, sustained flight, slam collisions, three viewport-clearing payloads and a bouncing timed grenade are implemented."
+      },
+      {
+        "title": "Feedback and budgets",
+        "description": "Smooth follow, explosion shake, destruction HUD, cooldowns, pause/restart, sound and dark-mode controls are capped by a 1,300-particle budget and a 2× pixel-ratio limit."
+      }
+    ],
+    "limitation": "No prompt pair, earlier source or iteration log was found. These are current implementation features, not claims of sequential optimization.",
+    "versions": [
+      {
+        "label": "Current source",
+        "path": "source/stickman-destroy/index.html",
+        "note": "Only verified source snapshot"
+      }
+    ],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "22": {
+    "level": "source-only",
+    "baseline": "The evidence starts with a public reference and ends at the current warm low-poly Roadster Rush implementation. No earlier source or iteration log exists, so this is an implementation walkthrough rather than a fabricated improvement timeline.",
+    "improvements": [
+      {
+        "title": "Reuse and bounded resources",
+        "description": "Road segments loop, while traffic, coin paths and jumps reuse objects. Particles are capped and materials are released on disposal."
+      },
+      {
+        "title": "Repeatable inspection",
+        "description": "Seeded randomness, ?demo=1 autopilot, scene presets and a small inspection interface make the current build easier to reproduce and review."
+      },
+      {
+        "title": "Complete game state",
+        "description": "Lane changes, jumping/flight, rolls, acceleration, collisions, scoring, pause and keyboard/touch input form a playable loop."
+      },
+      {
+        "title": "Lightweight presentation",
+        "description": "Procedural textures and geometry, shared box geometry, a pixel-ratio ceiling, soft shadows and synthesized audio keep the page self-contained."
+      }
+    ],
+    "limitation": "The Roadster Rush browser implementation is a different visual scene from the archived roadster comparison clip. The original reference is not presented as a model-generated result. No optimization rounds are claimed; these are current implementation details.",
+    "versions": [
+      {
+        "label": "Current playable source",
+        "path": "source/roadster-rush/index.html",
+        "note": "Current Roadster Rush implementation"
+      }
+    ],
+    "comparisons": [
+      {
+        "before_label": "Title state",
+        "before": "process-evidence/roadster-title.png",
+        "after_label": "Gameplay state",
+        "after": "process-evidence/roadster-gameplay.png",
+        "caption": "These are two states of the current implementation, not before/after versions."
+      }
+    ],
+    "metrics": [],
+    "evidence": []
+  },
+  "1": {
+    "level": "prompt-evolution",
+    "baseline": "A single self-contained 2D Canvas demolition scene with a crane, breakable bricks, gravity, rotation, friction, dust and an automatic loop.",
+    "improvements": [
+      {
+        "title": "Scope expands to three 3D scenes",
+        "description": "The advanced brief adds a tornado and an overloaded truck collapsing a truss bridge, while allowing rendering and physics libraries."
+      },
+      {
+        "title": "Structural failure becomes explicit",
+        "description": "A six-story bonded building, constrained chain, local bond failure, crack propagation and persistent rubble replace the generic collapse description."
+      },
+      {
+        "title": "Materials and controls become testable",
+        "description": "Low-poly art direction, brick chips, chain tension, recoil, Pause/Reset, speed controls and three named camera presets are specified."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "2": {
+    "level": "prompt-evolution",
+    "baseline": "A WebGL cloth lab with a roughly 48×48 Verlet grid, turbulent wind, dragging, PULSE, simulation controls and a 60 FPS target.",
+    "improvements": [
+      {
+        "title": "Cloth stability is tightened",
+        "description": "Exactly 2304 particles, structural/shear/bending constraints, an anchored upper edge, bounded stretching and damped release are specified."
+      },
+      {
+        "title": "Fabric replaces a generic shiny surface",
+        "description": "Procedural weave, translucent thin edges and fiber-aligned white sheen are required, explicitly avoiding a metallic look."
+      },
+      {
+        "title": "Controls must affect the real simulation",
+        "description": "Picking must occur on the actual cloth, every slider must affect its named property, and measured FPS/particle count must be shown."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "3": {
+    "level": "prompt-evolution",
+    "baseline": "Three brief Canvas scenes: a cannon demolishing a brick wall, bowling pins and a tornado.",
+    "improvements": [
+      {
+        "title": "Physics must drive the outcome",
+        "description": "Independent HTML files, stable timesteps, restitution, friction, angular motion and projectile tunneling prevention are added; canned destruction is forbidden."
+      },
+      {
+        "title": "Scene requirements become concrete",
+        "description": "At least 120 cannon-wall bricks, standard ten-pin arrangement and at least 40 tornado objects with different masses are specified."
+      },
+      {
+        "title": "Controls and feedback are expanded",
+        "description": "Aim/power, two throws per frame, tornado steering, automatic demos, Pause/Reset and numeric controls join smoke, dust, chips and reflections."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "5": {
+    "level": "prompt-evolution",
+    "baseline": "A single-file Galton board with about 12 peg rows, collision-driven distribution, colored balls, bins, a histogram and pause/speed controls.",
+    "improvements": [
+      {
+        "title": "Collision and counting become stricter",
+        "description": "Twelve rows map to thirteen bins, with substeps, non-overlapping settled stacks and counting only after a ball settles."
+      },
+      {
+        "title": "Trajectories and data become easier to read",
+        "description": "Peg highlights, contact shadows, hit flashes, recent-ball trails, exact bin counts and a shared scale are added."
+      },
+      {
+        "title": "Interaction and performance become measurable",
+        "description": "Reset, Single Drop, 1–20 balls/second, active/settled/total counts and measured FPS are required, with sleeping settled balls retained."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "7": {
+    "level": "prompt-evolution",
+    "baseline": "A playable third-person Colosseum game with attacks, sprint, parry, enemy AI, health/stamina, waves and an arena crowd.",
+    "improvements": [
+      {
+        "title": "Architecture and crowd scale up",
+        "description": "Three tiers of arches, radial stairs, independent seats and at least 12,000 instanced spectators are specified, with collision on arena obstacles."
+      },
+      {
+        "title": "Combat timing and fairness are clarified",
+        "description": "Attack windup/active/recovery, range and timing checks, no hits through walls, parry punishment windows and enemy stamina management are added."
+      },
+      {
+        "title": "Match flow and presentation become explicit",
+        "description": "Three winnable rounds with 1/2/3 opponents, victory/defeat states, persistent fallen enemies, camera damping and two lighting modes are required."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "8": {
+    "level": "prompt-evolution",
+    "baseline": "A one-line request: create code for an SVG of a pelican riding a bicycle as nicely as possible.",
+    "improvements": [
+      {
+        "title": "Standalone accessible vector delivery",
+        "description": "Responsive pure SVG with title/description, gradients, clipping and native animation replaces the open-ended output format; bitmap and external assets are excluded."
+      },
+      {
+        "title": "Anatomy and bicycle structure are detailed",
+        "description": "Feathers, beak, throat pouch, eyes, webbed feet, diamond frame, spokes, fork, chain and pedals must form a credible riding pose."
+      },
+      {
+        "title": "Motion and accessibility become constraints",
+        "description": "Consistent wheel/crank motion, feet on pedals, body bob, blinking, moving scenery and a complete prefers-reduced-motion pose are required."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "9": {
+    "level": "prompt-evolution",
+    "baseline": "A minimal isometric SVG card swipe with a moving card, glowing chip, receipt, success check and smooth easing.",
+    "improvements": [
+      {
+        "title": "Geometry and material layers are specified",
+        "description": "Thirty-degree isometry, separate terminal faces, screen, keypad, reader slot, print port, embossed card details and ground shadow are added."
+      },
+      {
+        "title": "Occlusion becomes a correctness requirement",
+        "description": "Inserted card sections must be clipped by the reader edge, the chip glows only during the swipe, and the receipt respects the print-port layer order."
+      },
+      {
+        "title": "The transaction becomes an eight-second sequence",
+        "description": "Swipe, confirmation pulse, receipt expansion, stamped check, hold, card return and receipt reset must not overlap or jump at the loop boundary."
+      }
+    ],
+    "limitation": "This entry documents specification refinement from Basic to Advanced. It does not prove that every requirement was implemented or verified, and it is not presented as a complete code iteration log.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "10": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "11": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "12": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "13": {
+    "level": "final-only",
+    "baseline": "The only retained brief is: “Build what you think you look like”",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "14": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "15": {
+    "level": "final-only",
+    "baseline": "The only retained brief is: “640×360 pixel art of cheetah running”",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "16": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "19": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "20": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  },
+  "21": {
+    "level": "final-only",
+    "baseline": "Only the final presentation is retained; no Basic/Advanced prompt pair or earlier source package was found.",
+    "improvements": [],
+    "limitation": "No reliable iteration record was found. The final work is preserved, but no intermediate modeling, animation, material, camera or UI changes are invented.",
+    "versions": [],
+    "comparisons": [],
+    "metrics": [],
+    "evidence": []
+  }
+}

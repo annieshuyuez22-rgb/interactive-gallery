@@ -8,6 +8,10 @@ A driving-game project family spanning an archival comparison cut and a warm low
 
 **Techniques:** Three.js, Driving controls, Low-poly scene
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

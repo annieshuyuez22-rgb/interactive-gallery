@@ -8,6 +8,10 @@ A polished bean machine where a bell-shaped distribution emerges from real ballâ
 
 **Techniques:** HTML5 Canvas, Elastic collisions, Live histogram
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

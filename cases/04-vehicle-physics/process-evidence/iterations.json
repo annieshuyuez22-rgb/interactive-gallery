@@ -1,0 +1,65 @@
+[
+  {
+    "iteration": 1,
+    "focus": "contact and collision/visual height agreement",
+    "observed": "The first contact sample used a 0.24m minimum even where the analytic body edge was lower, so collision could sit above the visible body edge.",
+    "evidence": "qc/physics.json contact positions before the fix; src/physics.ts carSurfaceHeight",
+    "change": "Clamp the residual floor to the local undeformed body height instead of applying a global 0.24m floor.",
+    "verification": "scripts/verify-physics.mjs PASS for idle, single car, five cars, both axles and offset contact; first-contact support height reduced to the actual edge height.",
+    "status": "PASS"
+  },
+  {
+    "iteration": 2,
+    "focus": "camera coverage and recording HUD",
+    "observed": "The initial follow camera left only the truck visible after the last car; replay tires occluded the roof; CSS transitions left ghost titles in immediate frame seeks; the damage readout saturated too early.",
+    "evidence": "runs/kimi/initial/qc/five-cars.png and roof-replay.png; qc/pass-02",
+    "change": "Blend the main camera to a wide residue view, pull back and raise replay cameras, remove HUD transitions and replace the arbitrary percentage with an affected-car count.",
+    "verification": "qc/pass-02 screenshots reviewed; intro/main boundary later verified pixel-identical.",
+    "status": "PASS"
+  },
+  {
+    "iteration": 3,
+    "focus": "vehicle structure and readable materials",
+    "observed": "Initial cars read as smooth roof shells with weak side structure and restrained creases; dark tires and the orange horizon reduced detail readability.",
+    "evidence": "runs/kimi/initial/qc/poster.png and final.png; qc/pass-02",
+    "change": "Add deformable side/end panels using the same damage field, stronger local creases, clearcoat paint, brighter fill and a neutral cooler horizon.",
+    "verification": "qc/pass-02 screenshots reviewed with zero browser errors.",
+    "status": "PASS"
+  },
+  {
+    "iteration": 4,
+    "focus": "physical correctness and deterministic replay",
+    "observed": "Independent review found time-only cumulative damage, global part detachment, missing debris/vehicle collision, repeated zero-step events and manual-mode playback contamination.",
+    "evidence": "Independent read-only review plus parked and zero-step reproductions.",
+    "change": "Drive plasticity by actual ground travel and load; hold manual brakes at zero input; use attachment-local damage; collide debris with deformed cars and tires; clear stale events; restore automatic mode on reset.",
+    "verification": "qc/physics.json, qc/verify.json and qc/recording/verify.json: parked eight seconds adds exactly zero damage; zero-step frames emit zero events; manual-to-auto replay is pixel-identical; offline single HTML has zero network requests.",
+    "status": "PASS"
+  },
+  {
+    "iteration": 5,
+    "focus": "final residue composition and damage readability",
+    "observed": "The first wide residue crop cut off part of the truck; the initial damage amplitude was too restrained.",
+    "evidence": "qc/pass-02/residue.png and qc/pass-03",
+    "change": "Reframe the wide camera around the full truck-plus-five-car ensemble and tune travel-driven plasticity for readable but distinct roof yield.",
+    "verification": "qc/pass-03 states and screenshots; all five cars complete with distinct max damage and finite truck state.",
+    "status": "PASS"
+  },
+  {
+    "iteration": 6,
+    "focus": "long-running resource stability",
+    "observed": "The first six-reset soak stayed near 60fps but renderer geometry count grew from 739 to 2099, showing that replaced car and debris GPU resources were not disposed.",
+    "evidence": "qc/soak.json before the disposal change",
+    "change": "Dispose replaced car and debris geometries/materials during deterministic resets without touching shared truck or environment resources.",
+    "verification": "qc/soak.json after the change: geometry count remains 479 in every cycle, textures remain 8, fps approximately 60, all states finite; build, interaction and recording suites pass.",
+    "status": "PASS"
+  },
+  {
+    "iteration": 7,
+    "focus": "user-requested tire grounding and crush realism polish",
+    "observed": "The user reported floating tires and clipping. Five-point support and rigid circular tires produced visible edge gaps; the car roof was too smooth. Review also found hard tire transitions, a B-pillar tip protruding through the roof and side-panel continuity issues.",
+    "evidence": "runs/kimi/before-contact-polish and qc/contact-r7-final",
+    "change": "Use 21 profile-aware support samples, load-smoothed tire compression, world-space contact patches and sidewall bulge. Add actual deformed-tire contact reports. Couple side panels to roof damage, taper edge creases, separate damaged seams and sink pillar tips appropriately.",
+    "verification": "qc/verify.json checks all four tires at six video times with absolute gap <= 1cm (measured zero in the final pass). qc/recording/verify.json is pixel-identical; qc/soak.json stays near 60fps with 499 geometries and 8 textures across resets. Independent final visual review passed: judge/contact-r7-review.json.",
+    "status": "PASS"
+  }
+]

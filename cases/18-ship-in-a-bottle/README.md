@@ -8,6 +8,10 @@ Two browser-based interpretations of a miniature sea, with animated waves, a sai
 
 **Techniques:** Three.js, Procedural water, Interactive scene
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Presentation 1](demo-01.mp4)

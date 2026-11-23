@@ -8,6 +8,10 @@ A playable arena scene built around procedural architecture, gladiator motion, a
 
 **Techniques:** Three.js, Procedural architecture, Game scene
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

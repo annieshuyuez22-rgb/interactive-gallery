@@ -8,6 +8,10 @@ A side-by-side motion variation exploring a different visual treatment for the p
 
 **Techniques:** Motion study, Character design, Comparison edit
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

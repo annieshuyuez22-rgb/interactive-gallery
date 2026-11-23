@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "elapsed_s": 30.195,
+  "geometryStable": true,
+  "textureStable": true,
+  "samples": [
+    {
+      "cycle": 0,
+      "fps": 59.791629172058464,
+      "heap": 13451552,
+      "geometries": 499,
+      "textures": 8,
+      "finite": true
+    },
+    {
+      "cycle": 1,
+      "fps": 60.0750439085985,
+      "heap": 20435272,
+      "geometries": 499,
+      "textures": 8,
+      "finite": true
+    },
+    {
+      "cycle": 2,
+      "fps": 60.03909522472616,
+      "heap": 18468248,
+      "geometries": 499,
+      "textures": 8,
+      "finite": true
+    },
+    {
+      "cycle": 3,
+      "fps": 60.00558191473931,
+      "heap": 13081548,
+      "geometries": 499,
+      "textures": 8,
+      "finite": true
+    },
+    {
+      "cycle": 4,
+      "fps": 60.13024891147772,
+      "heap": 18546196,
+      "geometries": 499,
+      "textures": 8,
+      "finite": true
+    },
+    {
+      "cycle": 5,
+      "fps": 60.00797448165869,
+      "heap": 19675880,
+      "geometries": 499,
+      "textures": 8,
+      "finite": true
+    }
+  ],
+  "errors": []
+}

@@ -8,6 +8,10 @@ A 640 × 360 pixel-art sprint with attention to gait, silhouette, and the feelin
 
 **Techniques:** Pixel art, Run cycle, Sprite animation
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

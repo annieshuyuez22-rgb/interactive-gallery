@@ -8,6 +8,10 @@ A train derailment, a mid-air canyon collision, and a monster-truck crush sequen
 
 **Techniques:** Vanilla JavaScript, 2D dynamics, Vehicle physics
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

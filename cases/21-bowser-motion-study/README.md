@@ -8,6 +8,10 @@ A character-focused animation study featuring Bowser-inspired form, staging, and
 
 **Techniques:** Character animation, 3D styling, Motion design
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

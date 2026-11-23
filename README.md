@@ -6,6 +6,17 @@ A curated collection of **25 physics, 3D and interactive projects**, with **33 f
 
 [**Open the interactive gallery →**](https://annieshuyuez22-rgb.github.io/social-bench/)
 
+## Improvement archive
+
+**Not just the final cut — the work behind it.** The [Improvement Archive](PROCESS.md) documents real source versions, technical iterations, before/after captures and prompt refinement, with an explicit evidence standard for every project.
+
+- **5 verified iteration histories:** [Monster Truck](cases/04-vehicle-physics/process.md), [Ship in a Bottle](cases/18-ship-in-a-bottle/process.md), [Fjord Seaplane](cases/23-fjord-seaplane/process.md), [Whale Breach](cases/24-whale-breach/process.md), [Fawn Deer](cases/25-fawn-deer-motion/process.md).
+- **7 prompt-evolution pairs:** Basic → Advanced specifications for scope, physics, materials, interaction, camera and accessibility.
+- **3 implementation studies:** real code differences and engineering decisions without invented release timelines.
+- **10 final-only archives:** no reliable process record, so no intermediate steps are fabricated.
+
+[**Read the complete Improvement Archive →**](PROCESS.md)
+
 ## Selected works
 
 <table><tr><td width="50%" valign="top"><a href="cases/02-interactive-cloth-lab/"><img src="cases/02-interactive-cloth-lab/poster.jpg" width="100%" alt="Interactive Cloth Lab"></a><br><strong>Interactive Cloth Lab</strong><br><sub>A high-density cloth surface with turbulent wind, direct dragging, pressure pulses, and live simulation controls.</sub></td><td width="50%" valign="top"><a href="cases/17-stickman-destroy/"><img src="cases/17-stickman-destroy/poster.jpg" width="100%" alt="Stickman Website Wreck"></a><br><strong>Stickman Website Wreck</strong><br><sub>An interactive stickman demolition scene that turns a familiar webpage into a playful destruction sandbox.</sub></td></tr><tr><td width="50%" valign="top"><a href="cases/18-ship-in-a-bottle/"><img src="cases/18-ship-in-a-bottle/poster.jpg" width="100%" alt="Ship in a Bottle"></a><br><strong>Ship in a Bottle</strong><br><sub>Two browser-based interpretations of a miniature sea, with animated waves, a sailing ship, weather, and tactile camera controls.</sub></td><td width="50%" valign="top"><a href="cases/22-roadster-rush/"><img src="cases/22-roadster-rush/poster.jpg" width="100%" alt="Roadster"></a><br><strong>Roadster</strong><br><sub>A driving-game project family spanning an archival comparison cut and a warm low-poly browser recreation.</sub></td></tr><tr><td width="50%" valign="top"><a href="cases/23-fjord-seaplane/"><img src="cases/23-fjord-seaplane/poster.jpg" width="100%" alt="Fjord Seaplane"></a><br><strong>Fjord Seaplane</strong><br><sub>A cinematic flight over reflective fjord water, with procedural mountains, waterfalls, spray, and a carefully directed camera.</sub></td><td width="50%" valign="top"><a href="cases/24-whale-breach/"><img src="cases/24-whale-breach/poster.jpg" width="100%" alt="Whale Breach"></a><br><strong>Whale Breach</strong><br><sub>A side-view ocean study combining a sculpted whale, layered waves, airborne droplets, and a full breach arc.</sub></td></tr></table>

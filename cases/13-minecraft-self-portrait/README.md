@@ -8,6 +8,10 @@ A block-built self-portrait exploring how a simple voxel vocabulary can suggest 
 
 **Techniques:** Voxel art, Character design, Minecraft
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

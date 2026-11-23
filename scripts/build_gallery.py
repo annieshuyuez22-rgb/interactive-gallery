@@ -24,14 +24,14 @@ def header(prefix=''):
     repo_button = f'<a class="button button-small" href="{esc(repo)}" target="_blank" rel="noreferrer">GitHub ↗</a>' if repo else ''
     return f'''<header class="site-header"><div class="container nav">
   <a class="brand" href="{prefix}index.html"><span class="brand-mark">S/B</span><span>SOCIAL BENCH</span></a>
-  <nav class="nav-links" aria-label="Main navigation"><a href="{prefix}index.html#archive">Projects</a><a href="{prefix}index.html#about">About</a>{repo_button}</nav>
+  <nav class="nav-links" aria-label="Main navigation"><a href="{prefix}index.html#archive">Projects</a><a href="{prefix}process.html">Process</a><a href="{prefix}index.html#about">About</a>{repo_button}</nav>
 </div></header>'''
 
 
 def footer(prefix=''):
     return f'''<footer class="site-footer"><div class="container footer-inner">
   <span>Social Bench · 25 creative coding experiments</span>
-  <span>Source, prompts & final cuts where available · <a href="{prefix}index.html#about">Archive notes</a></span>
+  <span>Source, prompts & final cuts where available · <a href="{prefix}process.html">Improvement archive</a></span>
 </div></footer>'''
 
 
@@ -80,7 +80,7 @@ def build_root():
       <p class="eyebrow">Creative coding archive · 2026</p>
       <h1>Small experiments.<br><span class="hero-title-accent">Big little worlds.</span></h1>
       <p class="hero-copy">A curated collection of 25 physics, 3D and interactive projects — with source, prompts and final cuts where available.</p>
-      <div class="hero-actions"><a class="button button-primary" href="#archive">Explore all 25 <span>↓</span></a><a class="button" href="#about">About the archive</a></div>
+      <div class="hero-actions"><a class="button button-primary" href="#archive">Explore all 25 <span>↓</span></a><a class="button" href="process.html">Improvement archive</a><a class="button" href="#about">About the archive</a></div>
       <ul class="stats"><li class="stat"><strong>25</strong><span>Projects</span></li><li class="stat"><strong>{video_count}</strong><span>Final cuts</span></li><li class="stat"><strong>03</strong><span>Collections</span></li></ul>
     </div>
     <div class="hero-collage">{tiles}</div>
@@ -129,7 +129,7 @@ def build_case(case):
 <meta name="description" content="{esc(case['summary'])}"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/styles.css">
 </head><body>{header('../../')}
 <main class="container">
-  <section class="case-hero"><a class="breadcrumb" href="../../index.html#archive">← Back to all projects</a><p class="eyebrow">SB—{case['number']:02d} · {esc(case['category_label'])}</p><h1>{esc(case['title'])}</h1><p class="case-zh">{esc(case['zh'])}</p><p class="case-summary">{esc(case['summary'])}</p><div class="case-actions">{apps}{source_button}<a class="button" href="{esc(case['reference'])}" target="_blank" rel="noreferrer">Public reference ↗</a></div></section>
+  <section class="case-hero"><a class="breadcrumb" href="../../index.html#archive">← Back to all projects</a><p class="eyebrow">SB—{case['number']:02d} · {esc(case['category_label'])}</p><h1>{esc(case['title'])}</h1><p class="case-zh">{esc(case['zh'])}</p><p class="case-summary">{esc(case['summary'])}</p><div class="case-actions">{apps}{source_button}<a class="button" href="process.html">Improvement log →</a><a class="button" href="{esc(case['reference'])}" target="_blank" rel="noreferrer">Public reference ↗</a></div></section>
   <div class="case-layout"><div class="video-stack">{videos}</div><aside class="case-sidebar">
     <section class="info-card"><h2>Project materials</h2><ul class="info-list"><li><strong>{len(case['videos'])}</strong> final presentation{'s' if len(case['videos']) != 1 else ''}</li><li>{'Verified source material' if case['source_available'] else 'Demo-only archive'}</li><li>{prompt_text}</li></ul></section>
     <section class="info-card"><h2>Source notes</h2><p>{esc(source_text)}</p>{source_button}</section>
@@ -180,6 +180,17 @@ def build_readme():
 A curated collection of **25 physics, 3D and interactive projects**, with **{video_count} final presentation cuts**, verified source material for **{source_count} projects**, and original prompt archives for **{prompt_count} projects**.
 
 {gallery_link}
+
+## Improvement archive
+
+**Not just the final cut — the work behind it.** The [Improvement Archive](PROCESS.md) documents real source versions, technical iterations, before/after captures and prompt refinement, with an explicit evidence standard for every project.
+
+- **5 verified iteration histories:** [Monster Truck](cases/04-vehicle-physics/process.md), [Ship in a Bottle](cases/18-ship-in-a-bottle/process.md), [Fjord Seaplane](cases/23-fjord-seaplane/process.md), [Whale Breach](cases/24-whale-breach/process.md), [Fawn Deer](cases/25-fawn-deer-motion/process.md).
+- **7 prompt-evolution pairs:** Basic → Advanced specifications for scope, physics, materials, interaction, camera and accessibility.
+- **3 implementation studies:** real code differences and engineering decisions without invented release timelines.
+- **10 final-only archives:** no reliable process record, so no intermediate steps are fabricated.
+
+[**Read the complete Improvement Archive →**](PROCESS.md)
 
 ## Selected works
 
@@ -255,6 +266,10 @@ def build_case_readmes():
 **Collection:** {case['category_label']} / {case['category_zh']}
 
 **Techniques:** {', '.join(case['tech'])}
+
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
 
 ## Final presentations
 

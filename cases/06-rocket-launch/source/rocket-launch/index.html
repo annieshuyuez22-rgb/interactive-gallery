@@ -35,8 +35,8 @@ const LEFT = { x: 6,   y: SCENE_Y, w: 942, h: SCENE_H };
 const RIGHT = { x: 972, y: SCENE_Y, w: 942, h: SCENE_H };
 
 const MODELS = {
-  left:  { name: 'Kimi K3 Flash', cost: 0.09, costTxt: '$0.09 USD', gen: '1m 37s' },
-  right: { name: 'Kimi K3',       cost: 0.42, costTxt: '$0.42 USD', gen: '4m 51s' }
+  left:  { name: 'Kimi K3 Flash' },
+  right: { name: 'Kimi K3' }
 };
 
 /* ---------------- shared texture helpers ---------------- */
@@ -602,9 +602,9 @@ function drawHeader(cx, m, badge) {
   ctx.fillText(m.name, cx, 118);
   ctx.fillStyle = COL.sub;
   ctx.font = '400 24px "Avenir Next", Arial, sans-serif';
-  ctx.fillText('Cost ' + m.costTxt + '  ·  Generation ' + m.gen, cx, 168);
+  ctx.fillText('Procedural 3D study', cx, 168);
   if (badge) {
-    const label = 'BEST VALUE';
+    const label = 'V2 STUDY';
     ctx.font = '700 16px "Avenir Next", Arial, sans-serif';
     const tw = ctx.measureText(label).width + 26;
     ctx.fillStyle = 'rgba(34,197,94,0.16)';
@@ -653,7 +653,7 @@ function drawEndCard(t) {
   // dim
   ctx.fillStyle = 'rgba(5,7,11,0.55)';
   ctx.fillRect(0, 62, W, H - 62);
-  const cw = 1180, ch = 460, cx = (W - cw) / 2, cy = 320;
+  const cw = 1180, ch = 280, cx = (W - cw) / 2, cy = 320;
   ctx.fillStyle = 'rgba(13,17,25,0.97)';
   roundRect(ctx, cx, cy, cw, ch, 18); ctx.fill();
   ctx.strokeStyle = '#2c3444'; ctx.lineWidth = 1.5;
@@ -662,41 +662,12 @@ function drawEndCard(t) {
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.fillStyle = COL.text;
   ctx.font = '800 44px "Avenir Next", Arial, sans-serif';
-  ctx.fillText('Same prompt.  Near-identical quality.', W / 2, cy + 72);
+  ctx.fillText('Same brief. Two implementation studies.', W / 2, cy + 72);
 
-  // comparison bars — Flash left (green), K3 right (gray)
-  const rows = [
-    { label: 'Cost per generation', l: '$0.09', r: '$0.42', lv: 0.09, rv: 0.42 },
-    { label: 'Generation time', l: '1m 37s', r: '4m 51s', lv: 97, rv: 291 }
-  ];
-  rows.forEach((row, i) => {
-    const y = cy + 150 + i * 108;
-    ctx.fillStyle = COL.sub; ctx.font = '500 22px "Avenir Next", Arial, sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText(row.label, cx + 70, y - 26);
-    const bw = 440, bh = 30;
-    // Flash bar (scaled to K3)
-    const scale = row.lv / row.rv;
-    ctx.fillStyle = '#3b4356';
-    roundRect(ctx, cx + 70, y, bw, bh, 6); ctx.fill();
-    ctx.fillStyle = COL.green;
-    roundRect(ctx, cx + 70, y, Math.max(8, bw * scale), bh, 6); ctx.fill();
-    ctx.fillStyle = '#e8ecf2'; ctx.font = '700 20px "Avenir Next", Arial, sans-serif';
-    ctx.fillText('Flash  ' + row.l, cx + 84, y + bh / 2 + 1);
-    // K3 bar (full width)
-    const rx = cx + cw - 70 - bw;
-    ctx.fillStyle = '#3b4356';
-    roundRect(ctx, rx, y, bw, bh, 6); ctx.fill();
-    ctx.fillStyle = '#8b94a5';
-    roundRect(ctx, rx, y, bw, bh, 6); ctx.fill();
-    ctx.fillStyle = COL.text;
-    ctx.fillText('K3  ' + row.r, rx + 14, y + bh / 2 + 1);
-  });
-
-  // verdict pill
+  // project label
   ctx.textAlign = 'center';
   ctx.font = '800 26px "Avenir Next", Arial, sans-serif';
-  const msg = 'Kimi K3 Flash  ·  1/5 the cost  ·  3× faster';
+  const msg = 'Rocket Launch  ·  procedural scene study';
   const pw = ctx.measureText(msg).width + 70;
   ctx.fillStyle = 'rgba(34,197,94,0.14)';
   roundRect(ctx, W / 2 - pw / 2, cy + ch - 92, pw, 52, 26); ctx.fill();

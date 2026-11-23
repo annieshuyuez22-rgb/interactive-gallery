@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "name": "Storm changes waves and lighting",
+      "result": "pass",
+      "detail": {
+        "amplitude": 1.9398754619769896
+      }
+    },
+    {
+      "name": "Time slider and automatic day/night cycle",
+      "result": "pass",
+      "detail": true
+    },
+    {
+      "name": "24 repeated event triggers keep fixed object pools",
+      "result": "pass",
+      "detail": {
+        "geometries": 117,
+        "logEntries": 4
+      }
+    },
+    {
+      "name": "Bottle drag rocks bottle without moving camera",
+      "result": "pass",
+      "detail": {
+        "angle": 0.16
+      }
+    },
+    {
+      "name": "Background drag orbits camera",
+      "result": "pass",
+      "detail": true
+    },
+    {
+      "name": "Ocean click creates a ripple",
+      "result": "pass",
+      "detail": true
+    },
+    {
+      "name": "Mouse wheel zooms the scene",
+      "result": "pass",
+      "detail": true
+    },
+    {
+      "name": "Quality, reduced-motion and log controls",
+      "result": "pass",
+      "detail": true
+    },
+    {
+      "name": "390px touch layout and controls",
+      "result": "pass",
+      "detail": true
+    },
+    {
+      "name": "No browser runtime errors",
+      "result": "pass",
+      "detail": []
+    }
+  ],
+  "errors": []
+}

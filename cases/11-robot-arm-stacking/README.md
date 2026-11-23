@@ -8,6 +8,10 @@ A robotic manipulator stacks objects with an emphasis on contact, motion timing,
 
 **Techniques:** 3D motion, Mechanical animation, Object interaction
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

@@ -8,6 +8,10 @@ An interactive stickman demolition scene that turns a familiar webpage into a pl
 
 **Techniques:** HTML5 Canvas, Interactive physics, Playful UI
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

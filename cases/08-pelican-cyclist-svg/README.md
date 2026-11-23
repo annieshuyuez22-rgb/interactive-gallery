@@ -8,6 +8,10 @@ A collection of expressive vector variations of a pelican riding a bicycle, from
 
 **Techniques:** SVG, Vector illustration, CSS animation
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Presentation 1](demo-01.mp4)

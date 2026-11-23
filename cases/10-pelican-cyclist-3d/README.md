@@ -8,6 +8,10 @@ Four three-dimensional takes on the familiar rider, exploring materials, camera 
 
 **Techniques:** 3D animation, Character motion, Look development
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Presentation 1](demo-01.mp4)

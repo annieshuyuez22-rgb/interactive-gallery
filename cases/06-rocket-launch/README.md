@@ -8,6 +8,10 @@ A procedural launch complex with countdown choreography, ignition, ascent, and i
 
 **Techniques:** Three.js, Procedural geometry, Camera direction
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

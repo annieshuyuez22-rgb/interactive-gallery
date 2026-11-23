@@ -8,6 +8,10 @@ A wrecking-ball study with breakable masonry, tumbling debris, impact dust, and 
 
 **Techniques:** HTML5 Canvas, Rigid-body physics, Particles
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

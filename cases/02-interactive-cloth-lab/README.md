@@ -8,6 +8,10 @@ A high-density cloth surface with turbulent wind, direct dragging, pressure puls
 
 **Techniques:** WebGL, Verlet cloth, Wind field
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Presentation 1](demo-01.mp4)

@@ -8,6 +8,10 @@ A second rider variation with alternate geometry, walk-cycle treatment, and pres
 
 **Techniques:** Motion study, Geometry, Character animation
 
+## Improvement log
+
+[Read the refinement process, evidence and version history](process.md)
+
 ## Final presentations
 
 - [Final presentation](demo.mp4)

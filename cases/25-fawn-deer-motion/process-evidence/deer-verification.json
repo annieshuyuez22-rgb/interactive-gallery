@@ -1,0 +1,27 @@
+{
+  "bounding_box_edge_difference_px": [
+    0,
+    1
+  ],
+  "representative_frames": [
+    1,
+    13,
+    25,
+    37,
+    49
+  ],
+  "mesh_vertices": 49714,
+  "rig_bones": 14,
+  "source_frames": 65,
+  "slow_motion_frames": 384,
+  "slow_motion_method": "Bidirectional motion-compensated interpolation; not newly rendered animation",
+  "eevee_samples": 256,
+  "shadow_rays": 4,
+  "shadow_steps": 8,
+  "packed_textures": [
+    "texture_diffuse",
+    "texture_metallic-texture_roughness",
+    "texture_normal"
+  ],
+  "decode_errors": []
+}
